@@ -3,7 +3,7 @@ default_locale: en
 locales:
   $ref: locales.yml
 template:
-  name: Simple Cloud Foundry toolchain
+  name: Simple Cloud Foundry toolchain (v2)
   description: >-
     With this toolchain, you can develop and deploy a Cloud Foundry application.
     By default, the toolchain uses a sample Node.js "Hello World" app, or you
