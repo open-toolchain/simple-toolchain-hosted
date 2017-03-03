@@ -4,20 +4,11 @@ locales:
   $ref: locales.yml
 template:
   name: Simple Cloud Foundry toolchain (v2)
-  description: >-
-    With this toolchain, you can develop and deploy a Cloud Foundry application.
-    By default, the toolchain uses a sample Node.js "Hello World" app, or you
-    can link to your own GitHub repository. This toolchain is preconfigured for
-    continuous delivery, source control, issue tracking, and online editing.
-
-
-    This toolchain uses tools that are part of the Continuous Delivery service.
-    If an instance of that service isn't already in your organization, when you
-    click **Create**, it is automatically added at no cost to you. For more
-    information and terms, see the [Bluemix
-    catalog](/catalog/services/continuous-delivery/).
-
-
+  description: |-
+    With this toolchain, you can develop and deploy a Cloud Foundry application.  By default, the toolchain clones a sample Node.js “Hello World” app into an IBM hosted Git repo, which you can then modify.  This toolchain is preconfigured for continuous delivery, source control, issue tracking, and online editing.
+    
+    The toolchain uses tools that are part of the Continuous Delivery service.  If an instance of that service isn’t already in your organization, when you click **Create**, it is automatically added at no cost to you. For more information and terms, see the [Bluemix catalog](https://console.ng.bluemix.net/catalog/services/continuous-delivery/).
+    
     To get started, click **Create**.
   header: '![](toolchain.svg?localize "header image")'
   icon: icon.svg
@@ -31,6 +22,12 @@ template:
       [master](https://github.com/open-toolchain/simple-toolchain.git/tree/master)
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
+  template:
+    getting_started: |-
+      **Your toolchain is ready!**
+
+      **Quick start:** Commit a change to the Git repo to trigger a new build and deployment.
+      For step-by-step instructions, see the [tutorial](link TBD) for this toolchain.      
 services:
   sample-repo:
     service_id: hostedgit
