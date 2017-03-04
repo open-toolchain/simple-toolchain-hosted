@@ -21,7 +21,7 @@
 	.st15{fill:#00AED1;}
 	.st16{fill:#3B4B54;}
 	.st17{fill:none;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
-	.st18{font-family:'Arial-BoldMT';}
+	.st18{font-family:'Arial'; font-weight: bold}
 	.st19{font-size:11px;}
 	.st20{fill:#5899E3;}
 </style>
