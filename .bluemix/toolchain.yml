@@ -13,7 +13,7 @@ template:
     - sample-repo
   info:
     git url: >-
-      [https://github.com/open-toolchain/simple-toolchain.git](https://github.com/open-toolchain/simple-toolchain-hosted)
+      [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
     git branch: >-
       [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
 toolchain:
