@@ -1,7 +1,6 @@
 ---
 template.name: "Toolchain Cloud Foundry semplice (v2)"
 template.description: "Utilizzando questa toolchain, è possibile sviluppare e distribuire un'applicazione Cloud Foundry. Per impostazione predefinita, la toolchain clona un'app “Hello World” Node.js di esempio in un repository Git ospitato da IBM che è possibile quindi modificare.Questa toolchain è preconfigurata per la distribuzione continua, il controllo origine, la traccia dei problemi e la modifica online.\n\nLa toolchain utilizza gli strumenti che fanno parte del servizio Continuous Delivery. Se nella propria organizzazione non è già presente un'istanza di tale servizio, quando si seleziona **Crea**, viene automaticamente aggiunta gratuitamente. Per ulteriori informazioni e per i termini, consultare il [catalogo Bluemix](https://console.ng.bluemix.net/catalog/services/continuous-delivery/).\n\nPer iniziare, fare clic su **Crea**."
-template.gettingStarted: "**La toolchain è pronta!**\n**Avvio rapido:** Eseguire il commit di una modifica al repository Git per attivare una nuova build e distribuzione.Per le sitruzioni passo dopo passo, consultare il [supporto didattico](https://www.ibm.com/devops/method/tutorials/tutorial_toolchain_cfv2) per questa toolchain."
 deploy.title: "Stage di distribuzione di esempio"
 deploy.description: "toolchain di esempio"
 deploy.longDescription: "Delivery Pipeline automatizza la distribuzione continua."
