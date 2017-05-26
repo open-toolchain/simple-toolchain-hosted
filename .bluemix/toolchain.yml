@@ -19,7 +19,7 @@ sample-repo:
     repo_url: https://github.com/open-toolchain/node-hello-world
     type: clone
     has_issues: true
-
+    enable_traceability: true
 # Pipelines
 sample-build:
   service_id: pipeline
