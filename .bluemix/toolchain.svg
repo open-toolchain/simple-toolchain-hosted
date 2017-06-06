@@ -119,10 +119,10 @@
 <polygon id="svg_129" class="st16" points="39.5,645 35.3,637.7 39.5,630.5 47.9,630.5 52.1,637.7 47.9,645 "/>
 <circle id="svg_130" class="st17" cx="52.4" cy="637.7" r="8.3"/>
 <polygon id="svg_131" class="st17" points="48.1,630.5 48.1,645 60.7,637.7 "/>
-<text id="headerSVG.issueTracker" transform="matrix(0.9271 0 0 1 -256.0107 681.2939)" textLength="89.7" lengthAdjust="spacingAndGlyphs" class="st18 st19">ISSUE TRACKER</text>
+<text id="headerSVG.issueTracker" transform="matrix(0.9271 0 0 1 -256.0107 681.2939)" class="st18 st19">ISSUE TRACKER</text>
 <text id="headerSVG.think" transform="matrix(1 0 0 1 -258.3569 568.7954)" class="st18 st19">THINK</text>
 <text id="headerSVG.code" transform="matrix(1 0 0 1 -168.6323 568.7954)" class="st18 st19">CODE</text>
-<text id="headerSVG.deliver" transform="matrix(1 0 0 1 -78.8682 568.7954)" textLength="56" lengthAdjust="spacingAndGlyphs" class="st18 st19">DELIVER</text>
+<text id="headerSVG.deliver" transform="matrix(1 0 0 1 -78.8682 568.7954)" class="st18 st19">DELIVER</text>
 <text id="headerSVG.run" transform="matrix(1 0 0 1 9.8564 568.7954)" class="st18 st19">RUN</text>
 <text id="headerSVG.repository" transform="matrix(0.9271 0 0 1 -157.3945 681.2939)" class="st18 st19">REPOSITORY</text>
 <text id="headerSVG.pipeline" transform="matrix(0.9271 0 0 1 -59.4912 681.2939)" class="st18 st19">PIPELINE</text>
