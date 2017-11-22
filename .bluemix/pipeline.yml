@@ -25,7 +25,7 @@ stages:
     value: undefined
     type: text
   jobs:
-  - name: Blue-Green Deploy
+  - name: Rolling Deploy
     type: deployer
     target:
       region_id: ${PROD_REGION_ID}
