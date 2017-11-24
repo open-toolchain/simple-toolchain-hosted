@@ -1,4 +1,4 @@
-# Simple Cloud Foundry toolchain (v2)
+# Develop a Cloud Foundry app
 
 ### Continuously deliver a Cloud Foundry app with IBM hosted repos and issue tracking
 
