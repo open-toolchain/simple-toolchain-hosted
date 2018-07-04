@@ -27,7 +27,9 @@
             "type": "string"
         },
         "api-key": {
-            "description": "API key description",
+            "description": {
+                "$ref": "#/messages/deploy.apiKeyDescription"
+            },
             "type": "string"
         },
         "prod-app-name": {
@@ -61,7 +63,9 @@
         {
 	        "type": "password",
 	        "readonly": false,
-	        "title": "IBM Cloud API Key",
+	        "title": {
+                   "$ref": "#/messages/deploy.apiKeyTitle"
+                },
 	        "key": "api-key"
         },
         {
