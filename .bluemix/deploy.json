@@ -16,7 +16,7 @@
     "properties": {
         "prod-region": {
             "description": {
-	       "$ref":"#/messages/deploy.org"
+	       "$ref":"#/messages/deploy.region"
 	    },
             "type": "string"
         },
