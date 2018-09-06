@@ -15,15 +15,21 @@
     "type": "object",
     "properties": {
         "prod-region": {
-            "description": "The bluemix region",
+            "description": {
+	       "$ref":"#/messages/deploy.org"
+	    }
             "type": "string"
         },
         "prod-organization": {
-            "description": "The bluemix org",
+            "description": {
+	       "$ref":"#/messages/deploy.org"
+	    },
             "type": "string"
         },
         "prod-space": {
-            "description": "The bluemix space",
+            "description": {
+	       "$ref":"#/messages/deploy.space"
+	    }
             "type": "string"
         },
         "api-key": {
