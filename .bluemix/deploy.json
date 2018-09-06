@@ -17,7 +17,7 @@
         "prod-region": {
             "description": {
 	       "$ref":"#/messages/deploy.org"
-	    }
+	    },
             "type": "string"
         },
         "prod-organization": {
@@ -29,7 +29,7 @@
         "prod-space": {
             "description": {
 	       "$ref":"#/messages/deploy.space"
-	    }
+	    },
             "type": "string"
         },
         "api-key": {
