@@ -48,6 +48,8 @@ services:
           PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
           API_KEY: '{{form.pipeline.parameters.api-key}}'
         execute: true
+  webide:
+    service_id: orion
 form:
   pipeline:
     parameters:
