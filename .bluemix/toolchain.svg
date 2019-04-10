@@ -3,48 +3,37 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
    y="0px" viewBox="-387 824.5 354.3 245.5" style="enable-background:new -387 824.5 354.3 245.5;" xml:space="preserve">
 <style type="text/css">
-  	.st0{fill:none;}
-	.st1{fill:#FFFFFF;stroke:#5AAAFA;stroke-miterlimit:10;}
-	.st2{fill:#1CB3A0;}
-	.st3{fill:#975AD1;}
-	.st4{fill:#FC42A0;}
-	.st5{fill:none;stroke:#5AAAFA;stroke-width:2;stroke-miterlimit:10;}
-	.st6{fill:#5AAAFA;}
-	.st7{fill:#FD783D;}
-	.st8{fill:#FDA578;}
-	.st9{fill:#4AD5C3;}
-	.st10{fill:#231F20;}
-	.st11{fill:#FCC215;}
-	.st12{fill:#FFFFFF;}
-	.st13{fill:#2E3737;}
-	.st14{fill:#586565;}
-	.st15{fill:#FCE77F;}
-	.st16{fill:#FCD432;}
-	.st17{fill:#030506;}
-	.st18{fill:#3D4747;}
-	.st19{fill:#64BC46;}
-	.st20{fill:#FC5255;}
-	.st21{opacity:0.77;fill:#9CDAF0;enable-background:new    ;}
-	.st22{opacity:0.77;fill:#201F1F;enable-background:new    ;}
-	.st23{fill:#201F1F;}
-	.st24{fill:#F4CAB1;}
-	.st25{opacity:0.5;fill:#AC5C51;enable-background:new    ;}
-	.st26{fill:#AC5C51;}
-	.st27{fill:#9CDAF0;}
-	.st28{font-family:'Arial'; font-weight: bold}
-	.st29{font-size:12px;}
-	.st30{fill:none;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
-	.st31{opacity:0.35;}
-	.st32{fill:#EEC02B;}
-	.st33{fill:url(#SVGID_1_);}
-	.st34{fill:url(#SVGID_2_);}
-	.st35{fill:#0064FF;}
-	.st36{fill:url(#SVGID_3_);}
-	.st37{fill:url(#SVGID_4_);}
-	.st38{fill:url(#SVGID_5_);}
-	.st39{fill:url(#SVGID_6_);}
-	.st40{fill:url(#SVGID_7_);}
-	.st41{fill:url(#SVGID_8_);}
+  .st0{fill:#FFFFFF;stroke:#5AAAFA;stroke-miterlimit:10;}
+  .st1{fill:none;}
+  .st2{fill:#EEC02B;}
+  .st3{fill:#1CB3A0;}
+  .st4{fill:#975AD1;}
+  .st5{fill:#FC42A0;}
+  .st6{fill:none;stroke:#5AAAFA;stroke-width:2;stroke-miterlimit:10;}
+  .st7{fill:#5AAAFA;}
+  .st8{fill:#FD783D;}
+  .st9{fill:#FDA578;}
+  .st10{fill:#4AD5C3;}
+  .st11{fill:#231F20;}
+  .st12{fill:#FCC215;}
+  .st13{fill:#FFFFFF;}
+  .st14{font-family:'Arial'; font-weight: bold}
+  .st15{font-size:11px;}
+  .st16{fill:url(#SVGID_1_);}
+  .st17{fill:url(#SVGID_2_);}
+  .st18{fill:#0064FF;}
+  .st19{fill:url(#SVGID_3_);}
+  .st20{fill:url(#SVGID_4_);}
+  .st21{fill:url(#SVGID_5_);}
+  .st22{fill:url(#SVGID_6_);}
+  .st23{fill:url(#SVGID_7_);}
+  .st24{fill:url(#SVGID_8_);}
+  .st25{fill:#3B4B54;}
+  .st26{fill:#0883A5;}
+  .st27{fill:#00AED1;}
+  .st28{fill:#027C68;}
+  .st29{fill:#00B199;}
+  .st30{fill:#243238;}
 </style>
 <circle id="svg_7_1_" class="st0" cx="-79.9" cy="912" r="26.5"/>
 <g>
