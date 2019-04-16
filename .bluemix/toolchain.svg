@@ -115,7 +115,7 @@
 <text id="headerSVG.run" transform="matrix(1 0 0 1 268.8564 18.7954)" class="st18 st19">RUN</text>
 <text id="headerSVG.repository" transform="matrix(0.9271 0 0 1 101.6055 131.2943)" class="st18 st19">REPOSITORY</text>
 <text id="headerSVG.pipeline" transform="matrix(0.9271 0 0 1 199.5088 131.2943)" class="st18 st19">PIPELINE</text>
-<text id="headerSVG.bluemix" transform="matrix(0.9271 0 0 1 291.293 131.2943)" class="st18 st19">BLUEMIX</text>
+<text id="headerSVG.bluemix" transform="matrix(0.9271 0 0 1 291.293 131.2943)" class="st18 st19">IBM Cloud</text>
 <text id="headerSVG.webIde" transform="matrix(0.9271 0 0 1 109.7646 243.2748)" class="st18 st19">WEB IDE</text>
 <line id="svg_15" class="st6" x1="131" y1="166" x2="131" y2="141.9"/>
 <g display="default" id="hostedgit_icon1">
