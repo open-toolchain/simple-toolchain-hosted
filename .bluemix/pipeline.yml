@@ -35,6 +35,8 @@ stages:
       api_key: ${API_KEY}
     script: |
       #!/bin/bash
+      # Remove spaces and replace with "-". Spaces can cause bad CF deploy.
+      CF_APP="${CF_APP// /-}"
       # Push app
       if ! cf app $CF_APP; then  
         cf push $CF_APP
