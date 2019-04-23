@@ -23,13 +23,31 @@ toolchain:
       $ref: "#/messages/template.gettingStarted"
 services:
   sample-repo:
-    service_id: githubconsolidated
-    parameters:
-      repo_name: '{{toolchain.name}}'
-      repo_url: 'https://github.com/open-toolchain/node-hello-world'
-      type: clone
-      has_issues: true
-      enable_traceability: true
+    $switch:
+      - $expr: $env.source_provider
+      - $default: 'hostedgit'
+        service_id: hostedgit
+        parameters:
+          repo_name: 'BYOC MyApp'
+          repo_url: $env.app_repo || 'http://gitlab.com/repo'
+          type: $env.type || 'clone'
+          has_issues: true
+          enable_traceability: true
+      - $case: 'githubconsolidated'
+        service_id: githubpublic
+        parameters:
+          repo_name: 'BYOC MyApp'
+          repo_url: $env.app_repo || 'http://github.com/repo'
+          type: $env.type || 'clone'
+          visibility: public
+      - $case: 'github_integrated'
+        service_id: github_integrated
+        parameters:
+          repo_name: 'BYOC MyApp'
+          repo_url: $env.app_repo || 'http://github.ibm.com/repo'
+          type: $env.type || 'clone'
+          has_issues: true
+          enable_traceability: true
   sample-build:
     service_id: pipeline
     parameters:
