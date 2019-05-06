@@ -13,7 +13,7 @@ This Hello World application uses Node.js and includes a DevOps toolchain that i
 
 * [Step by step tutorial](https://www.ibm.com/devops/method/tutorials/tutorial_toolchain_cfv2)
 * [Getting started](https://cloud.ibm.com/devops)
-* [Documentation](https://cloud.ibm.com/docs/services/ContinuousDelivery/index.html?pos=2)
+* [Documentation](https://cloud.ibm.com/docs/services/ContinuousDelivery?topic=ContinuousDelivery-getting-started&pos=2)
 * [Toolchains on the IBM Cloud Garage Method site](https://www.ibm.com/devops/method/category/tools)
 * Blog: [IBM Cloud Continuous Delivery is now live](https://www.ibm.com/blogs/bluemix/2016/11/bluemix-continuous-delivery-is-now-live/)
 * Video: [Introducing IBM Cloud Continuous Delivery](https://www.youtube.com/watch?v=QPSAZ64APpc&feature=youtu.be) (2m12s)
