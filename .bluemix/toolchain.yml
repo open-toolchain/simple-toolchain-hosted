@@ -17,8 +17,8 @@ template:
     #  [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
     #git branch: >-
     #  [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
-    git url: '[' + $env.repository + '](' + $env.repository + ')'
-    git branch:  '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
+    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
+    git branch:  "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
   template:
