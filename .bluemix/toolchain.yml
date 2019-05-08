@@ -6,6 +6,8 @@ template:
     $ref: "#/messages/template.name"
   description:
     $ref: "#/messages/template.description"
+    #TBD swap in $ref expression below to load descriptions dynamically
+    #$ref: "$env.source_provider === 'githubconsolidated' ? '#/messages/template.desc.githubconsolidated' : '#/messages/template.desc.hostedgit'"
   header: '![](toolchain.svg?localize)'
   icon: icon.svg
   required:
@@ -16,6 +18,8 @@ template:
     #  [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
     #git branch: >-
     #  [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
+    
+    # compute the git url and branch values dynamically so that they remain correct when repo is forked 
     git url: "'[' + $env.repository + '](' + $env.repository + ')'"
     git branch:  "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 toolchain:
