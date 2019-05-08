@@ -5,8 +5,7 @@ template:
   name:
     $ref: "#/messages/template.name"
   description:
-    #$ref: "#/messages/template.description"
-    $ref: "$env.source_provider === 'githubconsolidated' ? '#/messages/template.description.github' : '#/messages/template.description.gitlab'"
+    $ref: "#/messages/template.description"
   header: '![](toolchain.svg?localize)'
   icon: icon.svg
   required:
