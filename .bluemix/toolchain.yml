@@ -7,7 +7,7 @@ template:
   description:
     #$ref: "#/messages/template.description"
     # swap in $ref expression below to load descriptions dynamically
-    $ref: "$env.source_provider === 'githubconsolidated' ? '#/messages/template.desc.github' : '#/messages/template.desc.gitlab'"
+    $ref: "$env.source_provider === 'githubconsolidated' ? '#/messages/template.description.github' : '#/messages/template.description.gitlab'"
   header: '![](toolchain.svg?localize)'
   icon: icon.svg
   required:
