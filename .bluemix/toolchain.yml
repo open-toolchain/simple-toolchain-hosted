@@ -23,8 +23,8 @@ template:
     git url: "'[' + $env.repository + '](' + $env.repository + ')'"
     git branch: >
       "$env.branch ? 
-        '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' : 
-        '[master]('+ $env.repository + '/tree/master)'"
+      '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' : 
+      '[master]('+ $env.repository + '/tree/master)'"
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
   template:
