@@ -5,23 +5,23 @@ template:
   name:
     $ref: "#/messages/template.name"
   description:
-    #$ref: "#/messages/template.description"
-    # swap in $ref expression below to load descriptions dynamically
-    $ref: "$env.source_provider === 'githubconsolidated' ? '#/messages/template.description.github' : '#/messages/template.description.gitlab'"
+    $ref: "#/messages/template.description"
   header: '![](toolchain.svg?localize)'
   icon: icon.svg
   required:
     - sample-build
     - sample-repo
   info:
+    #original static git url and branch string definitions
     #git url: >-
     #  [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
     #git branch: >-
     #  [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
     
-    # compute the git url and branch values dynamically so that they remain correct when repo is forked 
+    # compute the git url and branch values dynamically so that they remain correct when repo is forked etc. 
+    # note `repository` url param must always be provided while the `branch` url param is optional
     git url: "'[' + $env.repository + '](' + $env.repository + ')'"
-    git branch:  "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
+    git branch:  "$env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' : '[master]('+ $env.repository + '/tree/master)'"
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
   template:
