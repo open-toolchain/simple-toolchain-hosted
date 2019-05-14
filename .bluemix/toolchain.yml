@@ -12,10 +12,16 @@ template:
     - sample-build
     - sample-repo
   info:
-    git url: >-
-      [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
-    git branch: >-
-      [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
+    #original static git url and branch string definitions
+    #git url: >-
+    #  [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
+    #git branch: >-
+    #  [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
+    
+    # compute the git url and branch values dynamically so that they remain correct when repo is forked etc. 
+    # note `repository` url param must always be provided while the `branch` url param is optional
+    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
+    git branch:  "$env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' : '[master]('+ $env.repository + '/tree/master)'"
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
   template:
