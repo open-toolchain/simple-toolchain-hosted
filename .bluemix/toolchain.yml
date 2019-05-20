@@ -19,12 +19,14 @@ template:
     #  [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
     
     # compute the git url and branch values dynamically so that they remain correct when repo is forked etc. 
-    # note `repository` url param must always be provided while the `branch` url param is optional
-    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
+    # note: `repository` url param must always be provided while the `branch` url param is optional
+    # the computed urls are of the same format as the original static urls shown above
+    git url: >
+        '[' + $env.repository + '](' + $env.repository + ')'
     git branch: >
         $env.branch ?
-        '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
-        '[master]('+ $env.repository + '/tree/master)'
+          '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
+          '[master]('+ $env.repository + '/tree/master)'
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
   template:
@@ -38,8 +40,12 @@ services:
         service_id: hostedgit
         parameters:
           repo_name: '{{toolchain.name}}'
-          repo_url: "$env.type === 'link' ? $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'"
-          source_repo_url: "$env.type === 'fork' || $env.type === 'clone' ? $env.app_repo : ''"
+          repo_url: >
+            $env.type === 'link' ? 
+              $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+          source_repo_url: >
+            $env.type === 'fork' || $env.type === 'clone' ? 
+              $env.app_repo : ''
           type: $env.type || 'clone'
           has_issues: true
           enable_traceability: true
@@ -47,17 +53,27 @@ services:
         service_id: githubconsolidated
         parameters:
           repo_name: '{{toolchain.name}}'
-          repo_url: "$env.type === 'link' ? $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'"
-          source_repo_url: "$env.type === 'fork' || $env.type === 'clone' ? $env.app_repo : ''"
+          repo_url: >
+            $env.type === 'link' ? 
+              $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+          source_repo_url: >
+            $env.type === 'fork' || $env.type === 'clone' ?
+              $env.app_repo : ''
           type: $env.type  || 'clone'
           visibility: public
       - $case: 'github_integrated'
         service_id: github_integrated
         parameters:
           repo_name: '{{toolchain.name}}'
-          repo_url: "$env.type === 'link' ? $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'"
-          source_repo_url: "$env.type === 'fork' || $env.type === 'clone' ? $env.app_repo : ''"
-          type: "$env.type !== undefined ? $env.type : 'clone'"
+          repo_url: >
+            $env.type === 'link' ? 
+              $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+          source_repo_url: >
+            $env.type === 'fork' || $env.type === 'clone' ? 
+              $env.app_repo : ''
+          type: >
+            $env.type !== undefined ? 
+              $env.type : 'clone'
           has_issues: true
           enable_traceability: true
   sample-build:
