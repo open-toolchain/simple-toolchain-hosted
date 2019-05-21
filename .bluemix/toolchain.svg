@@ -129,14 +129,14 @@
 <g id="svg_125">
 	<path id="svg_126" class="st1" d="M344.6,87.5"/>
 </g>
-<text id="headerSVG.think" transform="matrix(1 0 0 1 1 20.4998)" class="st14 st15">THINK</text>
-<text id="headerSVG.code" transform="matrix(1 0 0 1 90 20.4998)" class="st14 st15">CODE</text>
-<text id="headerSVG.deliver" transform="matrix(1 0 0 1 180.5 20.4998)" class="st14 st15">DELIVER</text>
-<text id="headerSVG.run" transform="matrix(1 0 0 1 269 20.4998)" class="st14 st15">RUN</text>
-<text id="headerSVG.issueTracker" transform="matrix(1 0 0 1 2.0801 125.4998)" class="st14 st15">ISSUE TRACKER</text>
-<text id="headerSVG.repository" transform="matrix(1 0 0 1 101.7422 125.4998)" class="st14 st15">REPOSITORY</text>
-<text id="headerSVG.pipeline" transform="matrix(1 0 0 1 198.9385 125.4998)" class="st14 st15">PIPELINE</text>
-<text id="headerSVG.ibmCloud" transform="matrix(1 0 0 1 282.0117 125.4998)" class="st14 st15">IBM Cloud</text>
+<text id="headerSVG.think" transform="matrix(1 0 0 1 0.6431 18.7948)" class="st14 st15">THINK</text>
+<text id="headerSVG.code" transform="matrix(1 0 0 1 90.3682 18.7948)" class="st14 st15">CODE</text>
+<text id="headerSVG.deliver" transform="matrix(1 0 0 1 180.1318 18.7948)" class="st14 st15">DELIVER</text>
+<text id="headerSVG.run" transform="matrix(1 0 0 1 268.856 18.7948)" class="st14 st15">RUN</text>
+<text id="headerSVG.issueTracker" transform="matrix(0.927 0 0 1 2.9888 131.2939)" class="st14 st15">ISSUE TRACKER</text>
+<text id="headerSVG.repository" transform="matrix(0.927 0 0 1 101.605 131.2939)" class="st14 st15">REPOSITORY</text>
+<text id="headerSVG.pipeline" transform="matrix(0.927 0 0 1 200.5088 131.2939)" class="st14 st15">PIPELINE</text>
+<text id="headerSVG.ibmCloud" transform="matrix(0.927 0 0 1 281.2407 131.2939)" class="st14 st15">IBM Cloud</text>
 <text id="headerSVG.webIde" transform="matrix(1 0 0 1 106.9717 240.5994)" class="st14 st15">WEB IDE</text>
 <g>
 	
