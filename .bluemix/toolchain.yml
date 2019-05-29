@@ -81,21 +81,6 @@ services:
               $env.type : 'clone'
           has_issues: true
           enable_traceability: true
-      - $case: 'bitbucketgit'
-        service_id: bitbucketgit
-        parameters:
-          repo_name: '{{toolchain.name}}'
-          repo_url: >
-            $env.type === 'link' ? 
-              $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
-          source_repo_url: >
-            $env.type === 'fork' || $env.type === 'clone' ? 
-              $env.app_repo : ''
-          type: >
-            $env.type !== undefined ? 
-              $env.type : 'clone'
-          has_issues: true
-          enable_traceability: true
   sample-build:
     service_id: pipeline
     parameters:
