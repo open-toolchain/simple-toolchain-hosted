@@ -54,7 +54,7 @@ services:
           type: $env.type  || 'clone'
           visibility: public
       - $case: 'gitlab'
-        service_id: github_integrated
+        service_id: gitlab
         parameters:
           repo_name: '{{toolchain.name}}'
           repo_url: >
