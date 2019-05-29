@@ -5,17 +5,33 @@ template:
   name:
     $ref: "#/messages/template.name"
   description:
-    $ref: "#/messages/template.description"
+    #original static description:
+    #$ref: "#/messages/template.description"
+    #template descriptions now vary depending on the flavor of source provider selected
+    $ref: >
+      $env.source_provider === 'githubconsolidated' ? 
+        '#/messages/template.description.github' : '#/messages/template.description'
   header: '![](toolchain.svg?localize)'
   icon: icon.svg
   required:
     - sample-build
     - sample-repo
   info:
-    git url: >-
-      [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
-    git branch: >-
-      [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
+    #original static git url and branch string definitions
+    #git url: >-
+    #  [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
+    #git branch: >-
+    #  [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
+    
+    # compute the git url and branch values dynamically so that they remain correct when repo is forked etc. 
+    # note: `repository` url param must always be provided while the `branch` url param is optional
+    # the computed urls are of the same format as the original static urls shown above
+    git url: >
+        '[' + $env.repository + '](' + $env.repository + ')'
+    git branch: >
+        $env.branch ?
+          '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
+          '[master]('+ $env.repository + '/tree/master)'
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
   template:
@@ -28,32 +44,56 @@ services:
       - $default: 'hostedgit'
         service_id: hostedgit
         parameters:
-          repo_name: 'BYOC MyApp'
-          repo_url: $env.app_repo || 'http://gitlab.com/repo'
+          repo_name: '{{toolchain.name}}'
+          repo_url: >
+            $env.type === 'link' ? 
+              $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+          source_repo_url: >
+            $env.type === 'fork' || $env.type === 'clone' ? 
+              $env.app_repo : ''
           type: $env.type || 'clone'
           has_issues: true
           enable_traceability: true
       - $case: 'githubconsolidated'
-        service_id: githubpublic
+        service_id: githubconsolidated
         parameters:
-          repo_name: 'BYOC MyApp'
-          repo_url: $env.app_repo || 'http://github.com/repo'
-          type: $env.type || 'clone'
+          repo_name: '{{toolchain.name}}'
+          repo_url: >
+            $env.type === 'link' ? 
+              $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+          source_repo_url: >
+            $env.type === 'fork' || $env.type === 'clone' ?
+              $env.app_repo : ''
+          type: $env.type  || 'clone'
           visibility: public
       - $case: 'github_integrated'
         service_id: github_integrated
         parameters:
-          repo_name: 'BYOC MyApp'
-          repo_url: $env.app_repo || 'http://github.ibm.com/repo'
-          type: $env.type || 'clone'
+          repo_name: '{{toolchain.name}}'
+          repo_url: >
+            $env.type === 'link' ? 
+              $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+          source_repo_url: >
+            $env.type === 'fork' || $env.type === 'clone' ? 
+              $env.app_repo : ''
+          type: >
+            $env.type !== undefined ? 
+              $env.type : 'clone'
           has_issues: true
           enable_traceability: true
       - $case: 'bitbucketgit'
         service_id: bitbucketgit
         parameters:
-          repo_name: 'BYOC MyApp'
-          repo_url: $env.app_repo || 'http://github.ibm.com/repo'
-          type: $env.type || 'clone'
+          repo_name: '{{toolchain.name}}'
+          repo_url: >
+            $env.type === 'link' ? 
+              $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+          source_repo_url: >
+            $env.type === 'fork' || $env.type === 'clone' ? 
+              $env.app_repo : ''
+          type: >
+            $env.type !== undefined ? 
+              $env.type : 'clone'
           has_issues: true
           enable_traceability: true
   sample-build:
