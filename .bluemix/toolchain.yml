@@ -51,7 +51,7 @@ services:
       type: $env.type || 'clone'
       has_issues: true
       enable_traceability: true
-      visibilty: private
+      private_repo: true
   sample-build:
     service_id: pipeline
     parameters:
