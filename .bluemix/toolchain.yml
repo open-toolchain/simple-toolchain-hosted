@@ -57,24 +57,24 @@ services:
     parameters:
       services:
         - sample-repo
-      name: {{services.sample-repo.parameters.repo_name}}
+      name: '{{services.sample-repo.parameters.repo_name}}'
       ui-pipeline: true
       configuration:
         content:
           $text: pipeline.yml
         env:
           SAMPLE_REPO: sample-repo
-          CF_APP_NAME: {{form.pipeline.parameters.prod-app-name}}
-          PROD_SPACE_NAME: {{form.pipeline.parameters.prod-space}}
-          PROD_ORG_NAME: {{form.pipeline.parameters.prod-organization}}
-          PROD_REGION_ID: {{form.pipeline.parameters.prod-region}}
-          API_KEY: {{form.pipeline.parameters.api-key}}
+          CF_APP_NAME: '{{form.pipeline.parameters.prod-app-name}}'
+          PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
+          PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
+          PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
+          API_KEY: '{{form.pipeline.parameters.api-key}}'
         execute: true
   webide:
     service_id: orion
 form:
   pipeline:
     parameters:
-      prod-app-name: {{services.sample-repo.parameters.repo_name}}
+      prod-app-name: '{{services.sample-repo.parameters.repo_name}}'
     schema:
       $ref: deploy.json
