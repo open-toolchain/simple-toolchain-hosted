@@ -41,7 +41,7 @@ services:
   sample-repo:
     service_id: $env.source_provider ? $env.source_provider:'hostedgit'
     parameters:
-      repo_name: $env.toolchain.name
+      repo_name: '{{toolchain.name}}'
       repo_url: >
         $env.type === 'link' ? 
           $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
