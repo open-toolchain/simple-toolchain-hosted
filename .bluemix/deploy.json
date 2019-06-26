@@ -31,7 +31,8 @@
             "type": "string",
             "validator": {
                 "v-type": "cf-org",
-                "params": ["prod-region"]
+                "params": ["prod-region"],
+                "validate": false
             }
         },
         "prod-space": {
@@ -41,7 +42,8 @@
             "type": "string",
             "validator": {
                 "v-type": "cf-space",
-                "params": ["prod-organization"]
+                "params": ["prod-organization"],
+                "validate": false
             }
         },
         "api-key": {
