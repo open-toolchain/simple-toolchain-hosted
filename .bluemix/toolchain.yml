@@ -6,9 +6,11 @@ template:
     $ref: "#/messages/template.name"
   description:
     #original static description:
-    $ref: "#/messages/template.description"
+    #$ref: "#/messages/template.description"
     #template descriptions now vary depending on the flavor of source provider selected
-    #$ref: '#/messages/template.description'
+    $ref: >
+	      $env.source_provider === 'githubconsolidated' ? 
+	        '#/messages/template.description.github' : '#/messages/template.description'
   header: '![](toolchain.svg?localize)'
   icon: icon.svg
   required:
