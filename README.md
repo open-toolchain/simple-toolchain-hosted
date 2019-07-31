@@ -11,7 +11,7 @@ This Hello World application uses Node.js and includes a DevOps toolchain that i
 ---
 ### Learn more
 
-* [Step by step tutorial](https://www.ibm.com/devops/method/tutorials/tutorial_toolchain_cfv2)
+* [Step by step tutorial](https://www.ibm.com/cloud/garage/tutorials/introduce-develop-cloud-foundry-app-toolchain)
 * [Getting started](https://cloud.ibm.com/devops)
 * [Documentation](https://cloud.ibm.com/docs/services/ContinuousDelivery?topic=ContinuousDelivery-getting-started&pos=2)
 * [Toolchains on the IBM Cloud Garage Method site](https://www.ibm.com/devops/method/category/tools)
