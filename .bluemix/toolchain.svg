@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="headerSVG.webIde" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 y="0px" viewBox="0 0 354.3 245.5" style="enable-background:new 0 0 354.3 245.5;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FFFFFF;stroke:#5AAAFA;stroke-miterlimit:10;}
@@ -129,15 +129,17 @@
 <g id="svg_125">
 	<path id="svg_126" class="st1" d="M344.6,87.5"/>
 </g>
-<text id="headerSVG.think" transform="matrix(1 0 0 1 1 20.4998)" class="st14 st15">THINK</text>
-<text id="headerSVG.code" transform="matrix(1 0 0 1 90 20.4998)" class="st14 st15">CODE</text>
-<text id="headerSVG.deliver" transform="matrix(1 0 0 1 180.5 20.4998)" class="st14 st15">DELIVER</text>
-<text id="headerSVG.run" transform="matrix(1 0 0 1 269 20.4998)" class="st14 st15">RUN</text>
-<text transform="matrix(1 0 0 1 2.0801 125.4998)" class="st14 st15">ISSUE TRACKER</text>
-<text transform="matrix(1 0 0 1 101.7422 125.4998)" class="st14 st15">REPOSITORY</text>
-<text transform="matrix(1 0 0 1 198.9385 125.4998)" class="st14 st15">PIPELINE</text>
-<text transform="matrix(1 0 0 1 282.0117 125.4998)" class="st14 st15">IBM Cloud</text>
-<text transform="matrix(1 0 0 1 106.9717 240.5994)" class="st14 st15">WEB IDE</text>
+
+<text id="headerSVG.think" transform="matrix(1 0 0 1 0.6431 18.7948)" class="st14 st15">THINK</text>
+<text id="headerSVG.code" transform="matrix(1 0 0 1 90.3682 18.7948)" class="st14 st15">CODE</text>
+<text id="headerSVG.deliver" transform="matrix(1 0 0 1 180.1318 18.7948)" class="st14 st15">DELIVER</text>
+<text id="headerSVG.run" transform="matrix(1 0 0 1 268.856 18.7948)" class="st14 st15">RUN</text>
+<text id="headerSVG.issueTracker" transform="matrix(0.927 0 0 1 2.9888 131.2939)" class="st14 st15">ISSUE TRACKER</text>
+<text id="headerSVG.repository" transform="matrix(0.927 0 0 1 110.605 131.2939)" class="st14 st15">REPOSITORY</text>
+<text id="headerSVG.pipeline" transform="matrix(0.927 0 0 1 200.5088 131.2939)" class="st14 st15">PIPELINE</text>
+<text id="headerSVG.ibmCloud" transform="matrix(0.927 0 0 1 281.2407 131.2939)" class="st14 st15">IBM Cloud</text>
+<text id="headerSVG.webIde" transform="matrix(1 0 0 1 110.9717 240.5994)" class="st14 st15">WEB IDE</text>
+
 <g>
 	
 		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="299.6299" y1="13476.9375" x2="304.3727" y2="13468.2832" gradientTransform="matrix(1 0 0 1 -4.44 -13377.9189)">
@@ -405,5 +407,25 @@
 	<line id="line-11_1_" class="st1" x1="135.7" y1="105.5" x2="135.6" y2="105.5"/>
 	<line id="line-12_1_" class="st1" x1="134.9" y1="105.6" x2="134.8" y2="105.6"/>
 	<line id="line-13_1_" class="st1" x1="136.8" y1="105.4" x2="136.7" y2="105.4"/>
+</g>
+<g id="bitbucket_icon1" display="none">
+	<path d="M58.8,80.8v-2.4h-1.1h-1.1v-1.2v-1.2h-1.1H33.9h-1.1v1.2v1.2h-1.1h-1.1v2.4h-2.2v19.5H61V80.8H58.8z M33.9,77.1h21.6v1.2
+		H33.9V77.1z M59.9,99.1H29.6V82h1.1h28.1h1.1V99.1z"/>
+	<polygon points="48,90.6 41.5,90.6 41.5,89.3 40.4,89.3 40.4,90.6 40.4,91.8 41.5,91.8 48,91.8 49.1,91.8 49.1,90.6 49.1,89.3 
+		48,89.3"/>
+</g>
+<g  id="bitbucket_icon2" display="none">>
+	<path d="M146,80.8v-2.4h-1.1h-1.1v-1.2v-1.2h-1.1h-21.6H120v1.2v1.2h-1.1h-1.1v2.4h-2.2v19.5h32.4V80.8H146z M121.1,77.1h21.6v1.2
+		h-21.6V77.1z M147,99.1h-30.3V82h1.1H146h1.1V99.1z"/>
+	<polygon points="135.1,90.6 128.7,90.6 128.7,89.3 127.6,89.3 127.6,90.6 127.6,91.8 128.7,91.8 135.1,91.8 136.2,91.8 136.2,90.6 
+		136.2,89.3 135.1,89.3"/>
+</g>
+<g id="gitlab_icon1" display="none">
+	<path d="M30.7,98.3l3.8,4.2l16-17.8l-3.8-4.2L30.7,98.3z M34.5,101L32,98.3l14.7-16.3l2.4,2.7L34.5,101z"/>
+	<polygon points="58,82.6 56.1,82.6 56.1,80.5 49.5,73.1 42,73.1 52.3,84.7 54.2,84.7 54.2,86.8 55.1,87.8 58.9,83.6"/>
+</g>
+<g id="gitlab_icon2" display="none">
+	<path d="M117.3,98.3l3.8,4.2l16-17.8l-3.8-4.2L117.3,98.3z M121.1,101l-2.4-2.7l14.7-16.3l2.4,2.7L121.1,101z"/>
+	<polygon points="144.6,82.6 142.7,82.6 142.7,80.5 136.1,73.1 128.6,73.1 138.9,84.7 140.8,84.7 140.8,86.8 141.7,87.8 145.5,83.6"/>
 </g>
 </svg>
