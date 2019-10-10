@@ -33,7 +33,9 @@ template:
           '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
           '[master]('+ $env.repository + '/tree/master)'
 toolchain:
-  name: 'simple-toolchain-{{timestamp}}'
+  name: >
+    $env.toolchainName? '{{toolchainName}}' :
+    'simple-toolchain-{{timestamp}}'
   template:
     getting_started:
       $ref: "#/messages/template.gettingStarted"
@@ -44,11 +46,12 @@ services:
     parameters:
       repo_name: '{{toolchain.name}}'
       repo_url: >
-        $env.type === 'link' ? 
-          $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+        $env.type === 'link' ? $env.app_repo :
+          $env.sourceZipUrl ? '{{sourceZipUrl}}' :
+            'https://github.com/open-toolchain/node-hello-world'
       source_repo_url: >
-        $env.type === 'fork' || $env.type === 'clone' ? 
-          $env.app_repo : 'https://github.com/open-toolchain/node-hello-world'
+        $env.type === 'fork' || $env.type === 'clone' ? $env.app_repo :
+          $env.sourceZipUrl ? '{{sourceZipUrl}}' : 'https://github.com/open-toolchain/node-hello-world'
       type: $env.type || 'clone'
       has_issues: true
       enable_traceability: true
@@ -75,6 +78,16 @@ services:
 form:
   pipeline:
     parameters:
-      prod-app-name: '{{services.sample-repo.parameters.repo_name}}'
+      prod-app-name: >
+        $env.prodAppName ?
+          '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
+      prod-space: '{{prodSpace}}'
+      prod-organization: '{{prodOrganization}}'
+      prod-region: '{{prodRegion}}'
+      # Renaming apiKey field as temporary workaround for 
+      # - headless template with pipeline prod-region & post apiKey gives error
+      #   https://github.ibm.com/org-ids/roadmap/issues/10572
+      # api-key: '{{apiKey}}'
+      api-key: '{{api-key}}'
     schema:
       $ref: deploy.json
