@@ -84,10 +84,6 @@ form:
       prod-space: '{{prodSpace}}'
       prod-organization: '{{prodOrganization}}'
       prod-region: '{{prodRegion}}'
-      # Renaming apiKey field as temporary workaround for 
-      # - headless template with pipeline prod-region & post apiKey gives error
-      #   https://github.ibm.com/org-ids/roadmap/issues/10572
-      # api-key: '{{apiKey}}'
-      api-key: '{{api-key}}'
+      api-key: '{{apiKey}}'
     schema:
       $ref: deploy.json
