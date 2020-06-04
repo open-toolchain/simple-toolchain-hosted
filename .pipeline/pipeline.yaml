@@ -10,6 +10,7 @@ spec:
     - name: branch
       description: the branch for the git repo
     - name: revision
+      description: the git revision/commit for the git repo
     - name: region
       description: Name of the region to deploy the CF app to. Default to the toolchain region
       default: ""
