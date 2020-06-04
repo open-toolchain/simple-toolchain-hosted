@@ -112,8 +112,6 @@ form:
       prod-app-name: >      
         $env.source_provider === 'githubconsolidated' ? 'githubconsolidated' :
           $env.source_provider === 'hostedgit' ? 'hostedgit' : "something else"
-        $env.prodAppName ?
-          '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
       prod-space: "{{prodSpace}}"
       prod-organization: "{{prodOrganization}}"
       prod-region: "{{prodRegion}}"
