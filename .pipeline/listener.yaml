@@ -56,12 +56,21 @@ spec:
               claimName: simple-hosted-pipeline-$(uid)-pvc
 ---
 apiVersion: tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: manual-run
+spec:
+  params:
+---
+apiVersion: tekton.dev/v1beta1
 kind: EventListener
 metadata:
   name: manual-run
 spec:
   triggers:
-    - template:
+    - binding:
+        name: manual-run
+      template:
         name: simple-hosted-pipeline
 ---
 apiVersion: tekton.dev/v1beta1
