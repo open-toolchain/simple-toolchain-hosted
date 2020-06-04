@@ -51,7 +51,7 @@ spec:
         - name: continuous-delivery-context-secret
           value: "secure-properties"
         - name: cloud-foundry-apikey-secret-key
-          value: "toolchain-apikey"
+          value: "apikey"
         - name: region
           value: $(params.region)
         - name: cf-org

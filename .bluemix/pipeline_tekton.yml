@@ -49,3 +49,6 @@ properties:
   - type: secure
     name: toolchain-apikey
     value: ${API_KEY}
+  - type: secure
+    name: apikey
+    value: ${API_KEY}
