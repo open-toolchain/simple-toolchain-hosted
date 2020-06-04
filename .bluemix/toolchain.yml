@@ -33,6 +33,8 @@ template:
       $env.branch ?
         '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
         '[master]('+ $env.repository + '/tree/master)'
+  $configuration:
+    ENABLE_EXTENSIONS: true        
 toolchain:
   name: >
     $env.toolchainName ? '{{toolchainName}}' :
@@ -110,10 +112,17 @@ form:
       #   $env.prodAppName ?
       #     '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
       prod-app-name: >      
-        $env.source_provider === 'githubconsolidated' ? 'githubconsolidated' :
-          $env.source_provider === 'hostedgit' ? 'hostedgit' :
-           $env.source_provider === 'gitlab' ? 'gitlab' :
-            $env.source_provider === 'bitbucketgit' ? 'bitbucketgit' : 'github_integrated'
+        if ($env.source_provider === 'githubconsolidated') {
+          'githubconsolidated';
+        } else if ($env.source_provider === 'hostedgit') {
+          'hostedgit';
+        } else if ($env.source_provider === 'gitlab') {
+          'gitlab';
+        } else if ($env.source_provider === 'bitbucketgit') {
+          'bitbucketgit';
+        } else {
+          'github_integrated';
+        } 
       prod-space: "{{prodSpace}}"
       prod-organization: "{{prodOrganization}}"
       prod-region: "{{prodRegion}}"
