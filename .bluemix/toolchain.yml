@@ -111,7 +111,9 @@ form:
       #     '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
       prod-app-name: >      
         $env.source_provider === 'githubconsolidated' ? 'githubconsolidated' :
-          $env.source_provider === 'hostedgit' ? 'hostedgit' : "something else"
+          $env.source_provider === 'hostedgit' ? 'hostedgit' :
+           $env.source_provider === 'gitlab' ? 'gitlab' :
+            $env.source_provider === 'bitbucketgit' ? 'bitbucketgit' : 'github_integrated'
       prod-space: "{{prodSpace}}"
       prod-organization: "{{prodOrganization}}"
       prod-region: "{{prodRegion}}"
