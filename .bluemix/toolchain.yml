@@ -1,37 +1,41 @@
-version: '2'
+---
+version: "2"
 messages:
   $i18n: locales.yml
 template:
   name:
     $ref: "#/messages/template.name"
   description:
-    #original static description:
-    #$ref: "#/messages/template.description"
-    #template descriptions now vary depending on the flavor of source provider selected
+    # original static description:
+    # $ref: "#/messages/template.description"
+    # template descriptions now vary depending on the flavor of source provider selected
     $ref: >
-      $env.source_provider === 'githubconsolidated' ? 
+      $env.source_provider === 'githubconsolidated' ?
       '#/messages/template.description.github' : '#/messages/template.description'
-  header: '![](toolchain.svg?localize)'
+  header: "![](toolchain.svg?localize)"
   icon: icon.svg
   required:
     - sample-build
     - sample-repo
   info:
-    #original static git url and branch string definitions
-    #git url: >-
+    # original static git url and branch string definitions
+    # git url: >-
     #  [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
-    #git branch: >-
+    # git branch: >-
     #  [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
-    
-    # compute the git url and branch values dynamically so that they remain correct when repo is forked etc. 
+
+    # compute the git url and branch values dynamically so that they remain correct when repo is forked etc.
     # note: `repository` url param must always be provided while the `branch` url param is optional
     # the computed urls are of the same format as the original static urls shown above
     git url: >
-        '[' + $env.repository + '](' + $env.repository + ')'
+      '[' + $env.repository + '](' + $env.repository + ')'
     git branch: >
-        $env.branch ?
-          '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
-          '[master]('+ $env.repository + '/tree/master)'
+      $env.branch ?
+        '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
+        '[master]('+ $env.repository + '/tree/master)'
+  $configuration:
+    ENABLE_EXTENSIONS: true
+  ENABLE_IF_ELSE: true
 toolchain:
   name: >
     $env.toolchainName ? '{{toolchainName}}' :
@@ -44,7 +48,7 @@ services:
     service_id: >
       $env.source_provider ? $env.source_provider : 'hostedgit'
     parameters:
-      repo_name: '{{toolchain.name}}'
+      repo_name: "{{toolchain.name}}"
       repo_url: >
         $env.type === 'link' ? $env.app_repo :
           $env.sourceZipUrl ? '{{sourceZipUrl}}' :
@@ -55,24 +59,56 @@ services:
       type: $env.type || 'clone'
       has_issues: true
       enable_traceability: true
+  pipeline-repo:
+    service_id: >
+      $env.pipeline_type === 'tekton' ? 'githubconsolidated' : ''
+    parameters:
+      repo_url: >
+        $env.repository
+      type: "link"
+      has_issues: false
+      enable_traceability: false
+  tekton-catalog-repo:
+    service_id: >
+      $env.pipeline_type === 'tekton' ? 'githubconsolidated' : ''
+    parameters:
+      repo_url: "https://github.com/open-toolchain/tekton-catalog"
+      type: "link"
+      has_issues: false
+      enable_traceability: false
   sample-build:
     service_id: pipeline
     parameters:
       services:
         - sample-repo
-      name: '{{services.sample-repo.parameters.repo_name}}'
+      name: "{{services.sample-repo.parameters.repo_name}}"
       ui-pipeline: true
+      type: >
+        $env.pipeline_type === 'tekton' ? 'tekton': 'classic'
       configuration:
         content:
-          $text: pipeline.yml
+          $text: >
+            $env.pipeline_type === 'tekton' ? 'pipeline_tekton.yml' : 'pipeline.yml'
         env:
           SAMPLE_REPO: sample-repo
-          CF_APP_NAME: '{{form.pipeline.parameters.prod-app-name}}'
-          PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
-          PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
-          PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
-          API_KEY: '{{form.pipeline.parameters.api-key}}'
-        execute: true
+          SAMPLE_REPO_FULL: >
+            $env.source_provider === 'githubconsolidated' ? "https://github.com/{{form.sample-repo.parameters.owner_id}}/{{form.sample-repo.parameters.repo_name}}" :
+              $env.source_provider === 'gitlab' ? "https://gitlab.com/{{form.sample-repo.parameters.owner_id}}/{{form.sample-repo.parameters.repo_name}}" : "https://us-south.git.cloud.ibm.com/{{form.sample-repo.parameters.owner_id}}/{{form.sample-repo.parameters.repo_name}}"
+          CF_APP_NAME: "{{form.pipeline.parameters.prod-app-name}}"
+          PROD_SPACE_NAME: "{{form.pipeline.parameters.prod-space}}"
+          PROD_ORG_NAME: "{{form.pipeline.parameters.prod-organization}}"
+          PROD_REGION_ID: "{{form.pipeline.parameters.prod-region}}"
+          API_KEY: "{{form.pipeline.parameters.api-key}}"
+          PIPELINE_REPO: pipeline-repo
+          PIPELINE_REPO_BRANCH: >
+            $env.branch ? $env.branch : "master"
+          TEKTON_CATALOG_REPO: tekton-catalog-repo
+          TEKTON_CATALOG_REPO_BRANCH: "tkn_v1beta1"
+          GIT_COMMIT_EVENT_LISTENER_NAME: >
+            $env.source_provider === 'githubconsolidated' ? 'github-commit' :
+              $env.source_provider === 'gitlab' ? 'grit-or-gitlab-commit' : 'grit-or-gitlab-commit'
+        execute: >
+          $env.pipeline_type === 'tekton' ? false : true
   webide:
     service_id: orion
 form:
@@ -81,9 +117,26 @@ form:
       prod-app-name: >
         $env.prodAppName ?
           '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
-      prod-space: '{{prodSpace}}'
-      prod-organization: '{{prodOrganization}}'
-      prod-region: '{{prodRegion}}'
-      api-key: '{{apiKey}}'
+      # Following is not working
+      # prod-app-name: >
+      #   if ($env.source_provider === 'githubconsolidated') {
+      #     'githubconsolidated';
+      #   } else if ($env.source_provider === 'github_integrated') {
+      #     'github_integrated'
+      #   } else if ($env.source_provider === 'gitlab') {
+      #     'gitlab';
+      #   } else if ($env.source_provider === 'bitbucketgit') {
+      #     'bitbucketgit';
+      #   } else {
+      #     'hostedgit';
+      #   }
+      # Following is working
+      # prod-app-name: >      
+      #   $env.source_provider === 'githubconsolidated' ? 'githubconsolidated' :
+      #     $env.source_provider === 'gitlab' ? 'gitlab' : 'hostedgit'
+      prod-space: "{{prodSpace}}"
+      prod-organization: "{{prodOrganization}}"
+      prod-region: "{{prodRegion}}"
+      api-key: "{{apiKey}}"
     schema:
       $ref: deploy.json
