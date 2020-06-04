@@ -19,7 +19,7 @@ inputs:
 triggers:
   - type: manual
     name: manual-run
-    eventListener: simple-hosted-pipeline
+    eventListener: manual-run
     properties:
       - type: text
         name: branch
@@ -27,6 +27,12 @@ triggers:
       - type: text
         name: repository
         value: ${SAMPLE_REPO_FULL}
+  - type: git
+    name: commit-push
+    eventListener: ${GIT_COMMIT_EVENT_LISTENER_NAME}
+    service: ${SAMPLE_REPO}
+    branch: master
+    events: { "push": true }
 properties:
   - type: text
     name: cf-app

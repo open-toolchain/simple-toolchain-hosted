@@ -104,6 +104,9 @@ services:
             $env.branch ? $env.branch : "master"
           TEKTON_CATALOG_REPO: tekton-catalog-repo
           TEKTON_CATALOG_REPO_BRANCH: "tkn_v1beta1"
+          GIT_COMMIT_EVENT_LISTENER_NAME: >
+            $env.source_provider === 'githubconsolidated' ? 'github-commit' :
+              $env.source_provider === 'gitlab' ? 'grit-or-gitlab-commit' : 'grit-or-gitlab-commit'
         execute: >
           $env.pipeline_type === 'tekton' ? false : true
   webide:
