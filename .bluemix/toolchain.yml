@@ -34,7 +34,8 @@ template:
         '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
         '[master]('+ $env.repository + '/tree/master)'
   $configuration:
-    ENABLE_EXTENSIONS: true        
+    ENABLE_EXTENSIONS: true
+  ENABLE_IF_ELSE: true
 toolchain:
   name: >
     $env.toolchainName ? '{{toolchainName}}' :
@@ -90,7 +91,7 @@ services:
             $env.pipeline_type === 'tekton' ? 'pipeline_tekton.yml' : 'pipeline.yml'
         env:
           SAMPLE_REPO: sample-repo
-          SAMPLE_REPO_FULL: 'https://github.com/{{form.sample-repo.parameters.owner_id}}/{{form.sample-repo.parameters.repo_name}}'
+          SAMPLE_REPO_FULL: "https://github.com/{{form.sample-repo.parameters.owner_id}}/{{form.sample-repo.parameters.repo_name}}"
           CF_APP_NAME: "{{form.pipeline.parameters.prod-app-name}}"
           PROD_SPACE_NAME: "{{form.pipeline.parameters.prod-space}}"
           PROD_ORG_NAME: "{{form.pipeline.parameters.prod-organization}}"
@@ -108,10 +109,10 @@ services:
 form:
   pipeline:
     parameters:
-      # prod-app-name: >      
+      # prod-app-name: >
       #   $env.prodAppName ?
       #     '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
-      prod-app-name: >      
+      prod-app-name: >
         if ($env.source_provider === 'githubconsolidated') {
           'githubconsolidated';
         } else if ($env.source_provider === 'hostedgit') {
@@ -122,7 +123,7 @@ form:
           'bitbucketgit';
         } else {
           'github_integrated';
-        } 
+        }
       prod-space: "{{prodSpace}}"
       prod-organization: "{{prodOrganization}}"
       prod-region: "{{prodRegion}}"
