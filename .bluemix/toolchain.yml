@@ -113,8 +113,7 @@ form:
         $env.source_provider === 'githubconsolidated' ? 'githubconsolidated' :
           $env.source_provider === 'hostedgit' ? 'hostedgit' :
           $env.source_provider === 'gitlab' ? 'gitlab' : 
-          $env.source_provider === 'bitbucketgit' ? 'bitbucketgit' : 
-          "github_integrated"
+          $env.source_provider === 'bitbucketgit' ? 'bitbucketgit' : 'github_integrated'
       prod-space: "{{prodSpace}}"
       prod-organization: "{{prodOrganization}}"
       prod-region: "{{prodRegion}}"
