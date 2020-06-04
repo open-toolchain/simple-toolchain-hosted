@@ -126,7 +126,7 @@ form:
       #   }
       prod-app-name: >      
         $env.source_provider === 'githubconsolidated' ? 'githubconsolidated' :
-          $env.source_provider === 'gitlab' ? 'gitlab' : 'hostedgit'
+          ($env.source_provider === 'gitlab' ? 'gitlab' : 'hostedgit')
       prod-space: "{{prodSpace}}"
       prod-organization: "{{prodOrganization}}"
       prod-region: "{{prodRegion}}"
