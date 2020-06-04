@@ -69,7 +69,7 @@ services:
     service_id: >
       $env.pipeline_type === 'tekton' ? 'githubconsolidated' : ''
     parameters:
-      repo_url: "https://github.com/jauninb/tekton-catalog"
+      repo_url: "https://github.com/open-toolchain/tekton-catalog"
       type: "link"
       has_issues: false
       enable_traceability: false
@@ -106,7 +106,12 @@ services:
 form:
   pipeline:
     parameters:
-      prod-app-name: >
+      # prod-app-name: >      
+      #   $env.prodAppName ?
+      #     '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
+      prod-app-name: >      
+        $env.source_provider === 'githubconsolidated' ? 'githubconsolidated' :
+          $env.source_provider === 'hostedgit' ? 'hostedgit' : "something else"
         $env.prodAppName ?
           '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
       prod-space: "{{prodSpace}}"
