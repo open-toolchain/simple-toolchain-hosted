@@ -20,7 +20,7 @@ template:
   $configuration:
     ENABLE_EXTENSIONS: true
     ENABLE_IF_ELSE: true
-    EXPRESSION_MAXLENGTH: 1500
+    EXPRESSION_MAXLENGTH: 2000
   info:
     # original static git url and branch string definitions
     # git url: >-
@@ -136,23 +136,6 @@ form:
       prod-app-name: >
         $env.prodAppName ?
           '{{prodAppName}}' : '{{services.sample-repo.parameters.repo_name}}'
-      # Following is not working
-      # prod-app-name: >
-      #   if ($env.source_provider === 'githubconsolidated') {
-      #     'githubconsolidated';
-      #   } else if ($env.source_provider === 'github_integrated') {
-      #     'github_integrated'
-      #   } else if ($env.source_provider === 'gitlab') {
-      #     'gitlab';
-      #   } else if ($env.source_provider === 'bitbucketgit') {
-      #     'bitbucketgit';
-      #   } else {
-      #     'hostedgit';
-      #   }
-      # Following is working
-      # prod-app-name: >      
-      #   $env.source_provider === 'githubconsolidated' ? 'githubconsolidated' :
-      #     $env.source_provider === 'gitlab' ? 'gitlab' : 'hostedgit'
       prod-space: "{{prodSpace}}"
       prod-organization: "{{prodOrganization}}"
       prod-region: "{{prodRegion}}"
