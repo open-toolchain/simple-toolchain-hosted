@@ -92,6 +92,11 @@ services:
             $env.pipeline_type === 'tekton' ? 'pipeline_tekton.yml' : 'pipeline.yml'
         env:
           SAMPLE_REPO: sample-repo
+          CF_APP_NAME: "{{form.pipeline.parameters.prod-app-name}}"
+          PROD_SPACE_NAME: "{{form.pipeline.parameters.prod-space}}"
+          PROD_ORG_NAME: "{{form.pipeline.parameters.prod-organization}}"
+          PROD_REGION_ID: "{{form.pipeline.parameters.prod-region}}"
+          API_KEY: "{{form.pipeline.parameters.api-key}}"
           SAMPLE_REPO_FULL: >
             if ( $env.source_provider === 'githubconsolidated' ) {
               "https://github.com/{{services.sample-repo.parameters.owner_id}}/{{services.sample-repo.parameters.repo_name}}";
@@ -104,11 +109,6 @@ services:
             } else {
               "https://us-south.git.cloud.ibm.com/{{services.sample-repo.parameters.owner_id}}/{{services.sample-repo.parameters.repo_name}}"
             }
-          CF_APP_NAME: "{{form.pipeline.parameters.prod-app-name}}"
-          PROD_SPACE_NAME: "{{form.pipeline.parameters.prod-space}}"
-          PROD_ORG_NAME: "{{form.pipeline.parameters.prod-organization}}"
-          PROD_REGION_ID: "{{form.pipeline.parameters.prod-region}}"
-          API_KEY: "{{form.pipeline.parameters.api-key}}"
           PIPELINE_REPO: pipeline-repo
           PIPELINE_REPO_BRANCH: >
             $env.branch ? $env.branch : "master"
