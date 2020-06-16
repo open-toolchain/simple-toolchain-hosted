@@ -20,7 +20,7 @@ template:
   $configuration:
     ENABLE_EXTENSIONS: true
     ENABLE_IF_ELSE: true
-    EXPRESSION_MAXLENGTH: 1000
+    EXPRESSION_MAXLENGTH: 1500
   info:
     # original static git url and branch string definitions
     # git url: >-
