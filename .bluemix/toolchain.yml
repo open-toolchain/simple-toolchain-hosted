@@ -95,8 +95,6 @@ services:
           SAMPLE_REPO_FULL: >
             if ( $env.source_provider === 'githubconsolidated' ) {
               "https://github.com/{{services.sample-repo.parameters.owner_id}}/{{services.sample-repo.parameters.repo_name}}";
-            } else if ( $env.source_provider === 'hostedgit' ) {
-              "https://us-south.git.cloud.ibm.com/{{services.sample-repo.parameters.owner_id}}/{{services.sample-repo.parameters.repo_name}}"
             } else if ( $env.source_provider === 'gitlab' ) {
               "https://gitlab.com/{{services.sample-repo.parameters.owner_id}}/{{services.sample-repo.parameters.repo_name}}";
             } else if ( $env.source_provider === 'bitbucketgit' ) {
@@ -119,8 +117,6 @@ services:
           GIT_COMMIT_EVENT_LISTENER_NAME: >
             if ( $env.source_provider === 'githubconsolidated' ) {
               'github-commit';
-            } else if ( $env.source_provider === 'hostedgit' ) {
-              'grit-or-gitlab-commit';
             } else if ( $env.source_provider === 'gitlab' ) {
               'grit-or-gitlab-commit';
             } else if ( $env.source_provider === 'bitbucketgit' ) {
