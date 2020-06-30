@@ -66,6 +66,7 @@ services:
     parameters:
       repo_url: >
         $env.repository
+      source_repo_url: "https://github.com/open-toolchain/simple-toolchain-hosted"
       type: "link"
       has_issues: false
       enable_traceability: false
@@ -75,6 +76,7 @@ services:
       $env.pipeline_type === 'tekton' ? 'githubconsolidated' : ''
     parameters:
       repo_url: "https://github.com/open-toolchain/tekton-catalog"
+      source_repo_url: "https://github.com/open-toolchain/tekton-catalog"
       type: "link"
       has_issues: false
       enable_traceability: false
