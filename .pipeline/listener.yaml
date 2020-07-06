@@ -12,6 +12,8 @@ spec:
     - name: revision
       description: the git revision/commit for the git repo (default to '' means branch)
       default: ""
+    - name: region
+      default: ""
     - name: cf-org
     - name: cf-space
     - name: cf-app
@@ -43,6 +45,8 @@ spec:
             value: $(params.branch)
           - name: revision
             value: $(params.revision)
+          - name: region
+            value: $(params.region)
           - name: cf-org
             value: $(params.cf-org)
           - name: cf-space
