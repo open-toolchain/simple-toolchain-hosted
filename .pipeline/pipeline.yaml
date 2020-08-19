@@ -31,7 +31,7 @@ spec:
         name: toolchain-extract-value
       params:
         - name: expression
-          value: '. as $toolchain | ["$(params.repository)"] | if .[0]=="" then $toolchain.services[] | .services[] | select(.toolchain_binding.name=="sample-repo") | .dashboard_url else .[0] end'
+          value: '. as $toolchain | ["$(params.repository)"] | if .[0]=="" then $toolchain | .services[] | select(.toolchain_binding.name=="sample-repo") | .dashboard_url else .[0] end'
         - name: pipeline-debug
           value: $(params.pipeline-debug)  
     - name: clone-task
