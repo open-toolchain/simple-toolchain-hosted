@@ -23,6 +23,10 @@ triggers:
     service: ${SAMPLE_REPO}
     branch: master
     events: { "push": true }
+  - type: manual
+    name: manual-run
+    eventListener: manual-run
+    properties: []
 properties:
   - type: text
     name: cf-app
