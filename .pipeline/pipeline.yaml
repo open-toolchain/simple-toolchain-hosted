@@ -44,6 +44,8 @@ spec:
           value: "secure-properties"
         - name: ibmcloud-apikey-secret-key
           value: "toolchain-apikey"
+        - name: ibmcloud-api
+          value: $(params.ibmcloud-api)
         - name: repository
           value: $(tasks.extract-repository-url.results.extracted-value)
         - name: branch
