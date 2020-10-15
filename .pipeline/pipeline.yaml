@@ -24,6 +24,9 @@ spec:
       description: Name of the CF application to be deployed
     - name: pipeline-debug
       default: "0"
+    - name: ibmcloud-api
+      description: IBM Cloud instance to target
+      default: "https://cloud.ibm.com"
   workspaces:
     - name: pipeline-ws
   tasks:
