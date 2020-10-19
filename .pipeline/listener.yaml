@@ -21,6 +21,7 @@ spec:
     - name: pipeline-debug
       default: "0"
     - name: ibmcloud-api
+      default: "https://cloud.ibm.com"
   resourcetemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim
