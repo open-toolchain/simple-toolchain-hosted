@@ -31,7 +31,7 @@ inputs:
 triggers:
   - type: git
     name: Git PR Trigger
-    service: ${APP_REPO}
+    service: ${SAMPLE_REPO}
     branch: master
     events:
       pull_request: true

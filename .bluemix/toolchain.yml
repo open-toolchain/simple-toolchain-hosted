@@ -106,8 +106,7 @@ services:
               "pipeline.yml"
             }
         env:
-          PIPELINE_REPO: sample-repo
-          APP_REPO: sample-repo
+          SAMPLE_REPO: sample-repo
           API_KEY: '{{form.pipeline.parameters.api-key}}'
           APP_NAME: "{{form.pipeline.parameters.prod-app-name}}"
           ARTIFACTORY_DOCKER_CONFIG_JSON: '{{form.artifactoryComp.parameters.docker_config_json}}'
@@ -128,6 +127,7 @@ services:
             } else {
               'gitlab-pr-listener';
             }
+          PIPELINE_REPO: pipeline-repo
         execute: false
   sample-build:
     service_id: pipeline
