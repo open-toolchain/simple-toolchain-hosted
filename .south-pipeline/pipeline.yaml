@@ -71,7 +71,7 @@ spec:
           workspace: pipeline-ws
     - name: cra-discovery-scan
       runAfter:
-        - git-clone-repo
+        - clone-task
       taskRef:
         name: cra-discovery
       workspaces:
@@ -83,7 +83,7 @@ spec:
         - name: revision
           value: $(params.branch)
         - name: commit-id
-          value: $(tasks.git-clone-repo.results.git-commit)
+          value: $(tasks.clone-task.results.git-commit)
         - name: pipeline-debug
           value: $(params.pipeline-debug)
         - name: directory-name
@@ -108,7 +108,7 @@ spec:
         - name: pr-url
           value: $(params.pr-url)
         - name: commit-id
-          value: $(tasks.git-clone-repo.results.git-commit)
+          value: $(tasks.clone-task.results.git-commit)
         - name: scm-type
           value: $(params.scm-type)
         - name: project-id
@@ -131,7 +131,7 @@ spec:
         - name: pr-url
           value: $(params.pr-url)
         - name: commit-id
-          value: $(tasks.git-clone-repo.results.git-commit)
+          value: $(tasks.clone-task.results.git-commit)
         - name: directory-name
           value: ""
         - name: scm-type
@@ -156,11 +156,11 @@ spec:
         - name: pr-url
           value: $(params.pr-url)
         - name: commit-id
-          value: $(tasks.git-clone-repo.results.git-commit)
+          value: $(tasks.clone-task.results.git-commit)
         - name: target-branch
           value: $(params.branch)
         - name: target-commit-id
-          value: $(tasks.git-clone-repo.results.git-commit)      
+          value: $(tasks.clone-task.results.git-commit)      
         - name: scm-type
           value: $(params.scm-type)
         - name: project-id
