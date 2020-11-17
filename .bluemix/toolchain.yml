@@ -106,7 +106,7 @@ services:
               "pipeline.yml"
             }
         env:
-          PIPELINE_REPO: pipeline-repo
+          PIPELINE_REPO: sample-repo
           APP_REPO: sample-repo
           API_KEY: '{{form.pipeline.parameters.api-key}}'
           APP_NAME: "{{form.pipeline.parameters.prod-app-name}}"
