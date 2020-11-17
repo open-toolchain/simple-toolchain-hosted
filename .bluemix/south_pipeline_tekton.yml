@@ -16,6 +16,10 @@ inputs:
     service: ${TEKTON_CATALOG_REPO}
     branch: ${TEKTON_CATALOG_REPO_BRANCH}
     path: toolchain
+  - type: git
+    service: ${TEKTON_CATALOG_REPO}
+    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    path: cra
 triggers:
   - type: git
     name: commit-push
