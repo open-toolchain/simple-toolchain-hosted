@@ -32,7 +32,7 @@ spec:
     - name: commit-timestamp
     - name: scm-type
     - name: project-id
-      default: """
+      default: ""
   workspaces:
     - name: pipeline-ws
   tasks:
