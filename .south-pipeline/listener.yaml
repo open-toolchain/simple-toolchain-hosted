@@ -22,6 +22,16 @@ spec:
       default: "0"
     - name: ibmcloud-api
       default: "https://cloud.ibm.com"
+    - name: pr-url
+      description: PR url
+    - name: apikey
+    - name: commit-timestamp
+      description: commit timestamp
+    - name: scm-type
+      description: source code type used (github, github-ent, gitlab)
+    - name: project-id
+      description: project id
+      default: ""
   resourcetemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim
@@ -60,6 +70,16 @@ spec:
             value: $(params.pipeline-debug)
           - name: ibmcloud-api
             value: $(params.ibmcloud-api)
+          - name: apikey
+            value: $(params.apikey)
+          - name: pr-url
+            value: $(params.pr-url)
+          - name: commit-timestamp
+            value: $(params.commit-timestamp)
+          - name: scm-type
+            value: $(params.scm-type)
+          - name: project-id
+            value: $(params.project-id)
         workspaces:
           - name: pipeline-ws
             persistentVolumeClaim:
