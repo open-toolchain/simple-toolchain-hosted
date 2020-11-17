@@ -71,7 +71,7 @@ spec:
           workspace: pipeline-ws
     - name: cra-discovery-scan
       runAfter:
-        - git-clone
+        - git-clone-repo
       taskRef:
         name: cra-discovery
       workspaces:
