@@ -190,6 +190,9 @@ services:
           $env.pipeline_type === 'tekton' ? false : true
   webide:
     service_id: orion
+  devops-insights:
+    service_id: >
+      $env.pipeline_type === 'tekton' && $env.env_id === 'ibm:yp:us-south' ? 'draservicebroker' : '' 
 form:
   pipeline:
     parameters:
