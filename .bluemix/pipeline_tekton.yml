@@ -1,0 +1,48 @@
+---
+inputs:
+  - type: git
+    service: ${PIPELINE_REPO}
+    branch: ${PIPELINE_REPO_BRANCH}
+    path: .pipeline
+  - type: git
+    service: ${TEKTON_CATALOG_REPO}
+    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    path: git
+  - type: git
+    service: ${TEKTON_CATALOG_REPO}
+    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    path: cloudfoundry
+  - type: git
+    service: ${TEKTON_CATALOG_REPO}
+    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    path: toolchain
+triggers:
+  - type: git
+    name: commit-push
+    eventListener: ${GIT_COMMIT_EVENT_LISTENER_NAME}
+    service: ${SAMPLE_REPO}
+    branch: master
+    events: { "push": true }
+  - type: manual
+    name: manual-run
+    eventListener: manual-run
+    properties: []
+properties:
+  - type: text
+    name: cf-app
+    value: ${CF_APP_NAME}
+  - type: text
+    name: cf-org
+    value: ${PROD_ORG_NAME}
+  - type: text
+    name: cf-space
+    value: ${PROD_SPACE_NAME}
+  - type: text
+    name: region
+    value: ${PROD_REGION_ID}
+  - type: secure
+    name: toolchain-apikey
+    value: ${API_KEY}
+  - type: secure
+    name: apikey
+    value: ${API_KEY}
