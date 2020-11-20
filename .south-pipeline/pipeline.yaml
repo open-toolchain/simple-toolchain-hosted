@@ -1,0 +1,242 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: simple-hosted-pipeline
+spec:
+  params:
+    - name: repository
+      description: the git repo containing source code. If empty, the repository url will be found from toolchain
+      default: ""
+    - name: branch
+      description: the branch for the git repo
+      default: "master"
+    - name: revision
+      description: the git revision/commit for the git repo
+    - name: region
+      description: Name of the region to deploy the CF app to. Default to the toolchain region
+      default: ""
+    - name: cf-org
+      description: Name of organization to deploy the CF app to
+    - name: cf-space
+      description: Name of space to deploy the CF app to
+    - name: cf-app
+      description: Name of the CF application to be deployed
+    - name: pipeline-debug
+      default: "0"
+    - name: ibmcloud-api
+      description: IBM Cloud instance to target
+      default: "https://cloud.ibm.com"
+    - name: pr-url
+      description: pr url
+    - name: commit-timestamp
+    - name: scm-type
+    - name: project-id
+      default: ""
+  workspaces:
+    - name: pipeline-ws
+  tasks:
+    - name: extract-repository-url
+      taskRef:
+        name: toolchain-extract-value
+      params:
+        - name: expression
+          # if a params.repository is given, it takes precedence
+          value: '. as $toolchain | ["$(params.repository)"] | if .[0]=="" then $toolchain | .services[] | select(.toolchain_binding.name=="sample-repo") | .dashboard_url else .[0] end'
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)  
+    - name: clone-task
+      taskRef:
+        name: git-clone-repo
+      params:
+        - name: continuous-delivery-context-secret
+          value: "secure-properties"
+        - name: ibmcloud-apikey-secret-key
+          value: "toolchain-apikey"
+        - name: ibmcloud-api
+          value: $(params.ibmcloud-api)
+        - name: repository
+          value: $(tasks.extract-repository-url.results.extracted-value)
+        - name: branch
+          value: $(params.branch)
+        - name: revision
+          value: $(params.revision)
+        - name: properties-file
+          # no use of properties-file
+          value: ""
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+      workspaces:
+        - name: output
+          workspace: pipeline-ws
+    - name: cra-discovery-scan
+      runAfter:
+        - clone-task
+      taskRef:
+        name: cra-discovery
+      workspaces:
+        - name: artifacts
+          workspace: pipeline-ws
+      params:
+        - name: repository
+          value: $(tasks.extract-repository-url.results.extracted-value)
+        - name: revision
+          value: $(params.branch)
+        - name: commit-id
+          value: $(tasks.clone-task.results.git-commit)
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+        - name: directory-name
+          value: ""
+        - name: commit-timestamp
+          value: $(params.commit-timestamp)
+    - name: code-vulnerability-scan
+      runAfter:
+        - cra-discovery-scan
+      taskRef:
+        name: cra-vulnerability-remediation
+      workspaces:
+        - name: artifacts
+          workspace: pipeline-ws
+        - name: secrets
+          workspace: pipeline-ws
+      params:
+        - name: repository
+          value: $(tasks.extract-repository-url.results.extracted-value)
+        - name: revision
+          value: $(params.branch)
+        - name: pr-url
+          value: $(params.pr-url)
+        - name: commit-id
+          value: $(tasks.clone-task.results.git-commit)
+        - name: scm-type
+          value: $(params.scm-type)
+        - name: project-id
+          value: $(params.project-id) 
+    - name: cra-cis-check
+      taskRef:
+        name: cra-cis-check
+      runAfter:
+        - cra-discovery-scan
+      workspaces:
+        - name: secrets
+          workspace: pipeline-ws
+        - name: artifacts
+          workspace: pipeline-ws
+      params:
+        - name: repository
+          value: $(tasks.extract-repository-url.results.extracted-value)
+        - name: revision
+          value: $(params.branch)
+        - name: pr-url
+          value: $(params.pr-url)
+        - name: commit-id
+          value: $(tasks.clone-task.results.git-commit)
+        - name: directory-name
+          value: ""
+        - name: scm-type
+          value: $(params.scm-type)
+        - name: project-id
+          value: $(params.project-id)
+    - name: cra-bom
+      taskRef:
+        name: cra-bom
+      runAfter:
+        - cra-discovery-scan
+      workspaces:
+        - name: artifacts
+          workspace: pipeline-ws
+        - name: secrets
+          workspace: pipeline-ws          
+      params:
+        - name: repository
+          value: $(tasks.extract-repository-url.results.extracted-value)
+        - name: revision
+          value: $(params.branch)
+        - name: pr-url
+          value: $(params.pr-url)
+        - name: commit-id
+          value: $(tasks.clone-task.results.git-commit)
+        - name: target-branch
+          value: $(params.branch)
+        - name: target-commit-id
+          value: $(tasks.clone-task.results.git-commit)      
+        - name: scm-type
+          value: $(params.scm-type)
+        - name: project-id
+          value: $(params.project-id)
+    - name: rolling-deploy-task
+      runAfter: [cra-discovery-scan]
+      taskRef:
+        name: cf-deploy-app
+      params:
+        - name: continuous-delivery-context-secret
+          value: "secure-properties"
+        - name: cloud-foundry-apikey-secret-key
+          value: "apikey"
+        - name: region
+          value: $(params.region)
+        - name: cf-org
+          value: $(params.cf-org)
+        - name: cf-space
+          value: $(params.cf-space)
+        - name: cf-app
+          value: $(params.cf-app)
+        - name: cf-commands
+          value: |
+            # Push app
+            if ! cf app "$CF_APP"; then
+              cf push "$CF_APP"
+            else
+              OLD_CF_APP="${CF_APP}-OLD-$(date +"%s")"
+              rollback() {
+                set +e
+                if cf app "$OLD_CF_APP"; then
+                  cf logs "$CF_APP" --recent
+                  cf delete "$CF_APP" -f
+                  cf rename "$OLD_CF_APP" "$CF_APP"
+                fi
+                exit 1
+              }
+              set -e
+              trap rollback ERR
+              cf rename "$CF_APP" "$OLD_CF_APP"
+              cf push "$CF_APP"
+              cf delete "$OLD_CF_APP" -f
+            fi
+            # Export app name and URL for use in later Pipeline jobs
+            export CF_APP_NAME="$CF_APP"
+            export APP_URL=http://$(cf app $CF_APP_NAME | grep -e urls: -e routes: | awk '{print $2}')
+            # View logs
+            cf logs "${CF_APP}" --recent
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+      workspaces:
+        - name: source
+          workspace: pipeline-ws
+    - name: publish-deployable-task
+      taskRef:
+        name: toolchain-publish-deployable-mapping
+      params:
+        - name: deployable-type
+          value: "app"
+        - name: deployable-region-id
+          value: $(tasks.rolling-deploy-task.results.region)
+        - name: deployable-guid
+          value: $(tasks.rolling-deploy-task.results.cf-app-guid)
+        - name: deployable-cf-org-id
+          value: $(tasks.rolling-deploy-task.results.cf-org-id)
+        - name: deployable-cf-org-name
+          value: $(params.cf-org)
+        - name: deployable-cf-space-id
+          value: $(tasks.rolling-deploy-task.results.cf-space-id)
+        - name: deployable-cf-space-name
+          value: $(params.cf-space)
+        - name: environment-label
+          value: "$(params.cf-org):$(params.cf-space)"
+        - name: git-inputs
+          value: "$(tasks.clone-task.results.git-repository),$(tasks.clone-task.results.git-commit),$(tasks.clone-task.results.git-branch)"
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+        - name: ibmcloud-api
+          value: $(params.ibmcloud-api)
