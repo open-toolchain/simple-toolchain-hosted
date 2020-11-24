@@ -49,7 +49,7 @@ services:
     service_id: >
       $env.source_provider ? $env.source_provider : 'hostedgit'
     parameters:
-      repo_name: "simple-toolchain-hosted-{{timestamp}}"
+      repo_name: '{{toolchain.name}}'
       repo_url: >
         $env.type === 'link' ? $env.app_repo :
           $env.sourceZipUrl ? '{{sourceZipUrl}}' :
