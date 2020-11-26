@@ -190,10 +190,10 @@ services:
           $env.pipeline_type === 'tekton' ? 'manual-run' : true
   webide:
     service_id: orion
- devops-insights:
-    service_id: >
-      $env.pipeline_type === 'tekton' && $env.env_id === 'ibm:yp:us-south' ? 'draservicebroker' :
-        $env.pipeline_type !== 'tekton' && $env.env_id === 'ibm:yp:us-south' || $env.env_id === 'ibm:yp:eu-de' || $env.env_id === 'ibm:yp:eu-gb' ? 'draservicebroker' : ''
+  devops-insights:
+      service_id: >
+        $env.pipeline_type === 'tekton' && $env.env_id === 'ibm:yp:us-south' ? 'draservicebroker' :
+          $env.pipeline_type !== 'tekton' && $env.env_id === 'ibm:yp:us-south' || $env.env_id === 'ibm:yp:eu-de' || $env.env_id === 'ibm:yp:eu-gb' ? 'draservicebroker' : ''
 form:
   pipeline:
     parameters:
