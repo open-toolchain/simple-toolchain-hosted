@@ -192,8 +192,7 @@ services:
     service_id: orion
   devops-insights:
       service_id: >
-        $env.pipeline_type === 'tekton' && $env.env_id === 'ibm:yp:us-south' || $env.env_id === 'ibm:yp:au-syd' ? 'draservicebroker' :
-          $env.pipeline_type !== 'tekton' && $env.env_id === 'ibm:yp:us-south' || $env.env_id === 'ibm:yp:eu-de' || $env.env_id === 'ibm:yp:eu-gb' || $env.env_id === 'ibm:yp:au-syd' ? 'draservicebroker' : ''
+        $env.env_id === 'ibm:yp:us-south' || $env.env_id === 'ibm:yp:eu-de' || $env.env_id === 'ibm:yp:eu-gb' || $env.env_id === 'ibm:yp:au-syd' ? 'draservicebroker' : ''
 form:
   pipeline:
     parameters:
