@@ -62,6 +62,11 @@ stages:
       else
         echo "Test runner script not found: ./test/run-tests.sh"
       fi
+      # need to set the ibmcloud api for staging env. The value defaults to cloud.ibm.com
+      export match=`echo $IDS_URL | grep test`
+      if [ $match ]; then
+          ibmcloud api test.cloud.ibm.com
+      fi
   - name: Build
     type: builder
 - name: DEPLOY
