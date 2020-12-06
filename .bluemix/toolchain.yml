@@ -68,7 +68,7 @@ services:
       repo_url: >
         $env.repository
       source_repo_url: "https://github.com/open-toolchain/simple-toolchain-hosted"
-      type: "link"
+      type: $env.type || 'clone'
       has_issues: false
       enable_traceability: false
       kind: ['pipeline']
