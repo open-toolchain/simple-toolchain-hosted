@@ -55,16 +55,18 @@ spec:
         - name: output
           workspace: pipeline-ws
     - name: unit-tests
-      runAfter: [git-clone]
+      runAfter: [docker-lint]
       taskRef:
         name: tester-run-tests
       params:
         - name: tests-script
           value: |
-            if [ -f ./tests/run-tests.sh ]; then
-              source ./tests/run-tests.sh
+            if [ -f ./test/run-tests.sh ]; then
+              source ./test/run-tests.sh
+              echo -n $FILE_LOCATIONS > $(results.test-result-file-paths.path)
+              echo -n $TEST_TYPES > $(results.test-types.path)
             else
-              echo "Test runner script not found: ./tests/run-tests.sh"
+              echo "Test runner script not found: ./test/run-tests.sh"
             fi
       workspaces:
         - name: artifacts
