@@ -23,7 +23,10 @@ stages:
     script: |+
       #!/bin/bash
       # set -x
-
+      export match=`echo $IDS_URL | grep test`
+      if [ $match ]; then
+          ibmcloud api test.cloud.ibm.com
+      fi
       # Git repo cloned at $WORKING_DIR, copy into $ARCHIVE_DIR
       mkdir -p $ARCHIVE_DIR
       cp -R -n ./ $ARCHIVE_DIR/ || true
