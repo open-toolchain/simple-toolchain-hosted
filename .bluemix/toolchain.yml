@@ -65,7 +65,8 @@ services:
     service_id: >
       $env.pipeline_type === 'tekton' ? $env.source_provider ? $env.source_provider : 'hostedgit' : ''
     parameters:
-      repo_name: "simple-toolchain-hosted-{{timestamp}}"
+      repo_name: >
+        $env.toolchainName ? '{{toolchainName}}-pipeline' : "simple-toolchain-hosted-{{timestamp}}"
       repo_url: >
         $env.repository
       source_repo_url: "https://github.com/open-toolchain/simple-toolchain-hosted"
