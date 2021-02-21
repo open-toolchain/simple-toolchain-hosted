@@ -17,10 +17,6 @@ template:
   required:
     - sample-build
     - sample-repo
-  $configuration:
-    ENABLE_EXTENSIONS: true
-    ENABLE_IF_ELSE: true
-    EXPRESSION_MAXLENGTH: 1000
   info:
     # original static git url and branch string definitions
     # git url: >-
