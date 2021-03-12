@@ -165,8 +165,20 @@ spec:
           value: $(params.scm-type)
         - name: project-id
           value: $(params.project-id)
-    - name: rolling-deploy-task
+    - name: additional-build-scan
       runAfter: [cra-discovery-scan]
+      workspaces:
+        - name: output
+          workspace: pipeline-ws
+      taskRef:
+        name: toolchain-build-scan
+      params:
+        - name: repository
+          value: $(tasks.clone-task.results.git-repository)
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+    - name: rolling-deploy-task
+      runAfter: [additional-build-scan]
       taskRef:
         name: cf-deploy-app
       params:
