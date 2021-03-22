@@ -27,6 +27,9 @@ spec:
     - name: ibmcloud-api
       description: IBM Cloud instance to target
       default: "https://cloud.ibm.com"
+    - name: custom-script
+      description: user-provided script
+      default: ""
   workspaces:
     - name: pipeline-ws
   tasks:
@@ -63,8 +66,20 @@ spec:
       workspaces:
         - name: output
           workspace: pipeline-ws
-    - name: rolling-deploy-task
+    - name: build
       runAfter: [clone-task]
+      workspaces:
+        - name: output
+          workspace: pipeline-ws
+      taskRef:
+        name: build-task
+      params:
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+        - name: custom-script
+          value: $(params.custom-script)
+    - name: rolling-deploy-task
+      runAfter: [build]
       taskRef:
         name: cf-deploy-app
       params:
