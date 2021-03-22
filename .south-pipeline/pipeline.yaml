@@ -33,9 +33,6 @@ spec:
     - name: scm-type
     - name: project-id
       default: ""
-    - name: custom-script
-      description: user-provided custom script
-      default: ""
   workspaces:
     - name: pipeline-ws
   tasks:
@@ -168,20 +165,8 @@ spec:
           value: $(params.scm-type)
         - name: project-id
           value: $(params.project-id)
-    - name: build
-      runAfter: [cra-discovery-scan]
-      workspaces:
-        - name: output
-          workspace: pipeline-ws
-      taskRef:
-        name: build-task
-      params:
-        - name: pipeline-debug
-          value: $(params.pipeline-debug)
-        - name: custom-script
-          value: $(params.custom-script)
     - name: rolling-deploy-task
-      runAfter: [additional-build-scan]
+      runAfter: [cra-discovery-scan]
       taskRef:
         name: cf-deploy-app
       params:
