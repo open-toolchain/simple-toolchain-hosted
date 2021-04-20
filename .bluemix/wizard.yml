@@ -10,7 +10,7 @@ steps:
     title:
       $ref: "#/messages/wizard.step.application.title"
     form: wizard_app
-    advanced_form: repo
+    advanced_form: sample-repo
     conditions:
       $ref: conditions.yml#/repo_conditions
   - name: vault
