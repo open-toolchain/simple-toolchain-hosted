@@ -1,5 +1,5 @@
 ---
-version: "2"
+version: "3"
 messages:
   $i18n: locales.yml
 template:
@@ -37,6 +37,8 @@ template:
       $env.branch ?
         '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
         '[master]('+ $env.repository + '/tree/master)'
+  wizard:
+    $ref: wizard.yml
 toolchain:
   name: >
     $env.toolchainName ? '{{toolchainName}}' :
