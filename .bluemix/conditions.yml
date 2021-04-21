@@ -154,3 +154,19 @@ tools_conditions:
       - type: delete-service
         service_id: orion
         service_label: webide
+  - condition:
+     any:
+       - parameter: doi
+         value: true
+     actions:
+       - type: create-service
+         service_id: draservicebroker
+         service_label: devops-insights
+  - condition:
+     any:
+       - parameter: doi
+         value: false
+     actions:
+       - type: delete-service
+         service_id: draservicebroker
+         service_label: devops-insights
