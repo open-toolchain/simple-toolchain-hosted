@@ -22,6 +22,9 @@ spec:
       default: "0"
     - name: ibmcloud-api
       default: "https://cloud.ibm.com"
+    - name: custom-script
+      description: user-provided script
+      default: ""
   resourcetemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim
