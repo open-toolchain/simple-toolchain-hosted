@@ -5,6 +5,9 @@ metadata:
   name: simple-hosted-pipeline
 spec:
   params:
+    - name: ibmcloud-api
+      description: the ibmcloud api
+      default: https://cloud.ibm.com
     - name: repository
       description: the git repo containing source code. If empty, the repository url will be found from toolchain
       default: ""
@@ -46,6 +49,8 @@ spec:
       taskRef:
         name: git-clone-repo
       params:
+        - name: ibmcloud-api
+          value: $(params.ibmcloud-api)
         - name: continuous-delivery-context-secret
           value: "secure-properties"
         - name: ibmcloud-apikey-secret-key
@@ -83,6 +88,8 @@ spec:
       taskRef:
         name: cf-deploy-app
       params:
+        - name: ibmcloud-api
+          value: $(params.ibmcloud-api)
         - name: continuous-delivery-context-secret
           value: "secure-properties"
         - name: cloud-foundry-apikey-secret-key
@@ -131,6 +138,8 @@ spec:
       taskRef:
         name: toolchain-publish-deployable-mapping
       params:
+        - name: ibmcloud-api
+          value: $(params.ibmcloud-api)
         - name: deployable-type
           value: "app"
         - name: deployable-region-id
