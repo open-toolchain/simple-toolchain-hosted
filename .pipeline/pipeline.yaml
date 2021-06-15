@@ -83,6 +83,8 @@ spec:
       taskRef:
         name: cf-deploy-app
       params:
+        - name: ibmcloud-api
+          value: $(params.ibmcloud-api)
         - name: continuous-delivery-context-secret
           value: "secure-properties"
         - name: cloud-foundry-apikey-secret-key

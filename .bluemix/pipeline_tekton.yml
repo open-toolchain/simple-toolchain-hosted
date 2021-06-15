@@ -29,6 +29,9 @@ triggers:
     properties: []
 properties:
   - type: text
+    name: ibmcloud-api
+    value: ${IBMCLOUD_API}
+  - type: text
     name: cf-app
     value: ${CF_APP_NAME}
   - type: text
