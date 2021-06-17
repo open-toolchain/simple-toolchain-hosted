@@ -54,12 +54,12 @@ services:
       repo_url: >
         $env.type === 'link' ? $env.app_repo :
           $env.sourceZipUrl ? '{{sourceZipUrl}}' :
-            $env.template.info.hosted_region !== "" ? 'https://{{template.info.hosted_region}}.git.cloud.ibm.com/huayuenh/node-hello-world':
+            $env.template.info.hosted_region !== "" ? 'https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/node-hello-world':
           'https://github.com/open-toolchain/node-hello-world'
       source_repo_url: >
         $env.type === 'fork' || $env.type === 'clone' ? $env.app_repo :
           $env.sourceZipUrl ? '{{sourceZipUrl}}' : 
-            $env.template.info.hosted_region !== "" ? 'https://{{template.info.hosted_region}}.git.cloud.ibm.com/huayuenh/node-hello-world':
+            $env.template.info.hosted_region !== "" ? 'https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/node-hello-world':
             'https://github.com/open-toolchain/node-hello-world'
       type: $env.type || 'clone'
       has_issues: true
@@ -73,13 +73,13 @@ services:
         $env.toolchainName ? '{{toolchainName}}-pipeline' : "simple-toolchain-hosted-{{timestamp}}"
       repo_url: >
         if ( $env.template.info.hosted_region !== "" ) {
-          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/huayuenh/simple-toolchain-hosted
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted
         } else {
           "https://github.com/open-toolchain/simple-toolchain-hosted"
         }
       source_repo_url: >
         if ( $env.template.info.hosted_region !== "" ) {
-          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/huayuenh/simple-toolchain-hosted
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted
         } else {
           "https://github.com/open-toolchain/simple-toolchain-hosted"
         }
@@ -95,13 +95,13 @@ services:
         $env.toolchainName ? '{{toolchainName}}-tekton-catalog' : 'tekton-catalog-{{timestamp}}'   
       repo_url: >
         if ( $env.template.info.hosted_region !== "" ) {
-          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/huayuenh/tekton-catalog"
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/tekton-catalog"
         } else {
           "https://github.com/open-toolchain/tekton-catalog"
         }
       source_repo_url: >
         if ( $env.template.info.hosted_region !== "" ) {
-          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/huayuenh/tekton-catalog"
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/tekton-catalog"
         } else {
           "https://github.com/open-toolchain/tekton-catalog"
         }
