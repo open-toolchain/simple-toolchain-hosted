@@ -73,13 +73,13 @@ services:
         $env.toolchainName ? '{{toolchainName}}-pipeline' : "simple-toolchain-hosted-{{timestamp}}"
       repo_url: >
         if ( $env.template.info.hosted_region !== "" ) {
-          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted"
         } else {
           "https://github.com/open-toolchain/simple-toolchain-hosted"
         }
       source_repo_url: >
         if ( $env.template.info.hosted_region !== "" ) {
-          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted"
         } else {
           "https://github.com/open-toolchain/simple-toolchain-hosted"
         }
