@@ -6,15 +6,15 @@ inputs:
     path: .pipeline
   - type: git
     service: ${TEKTON_CATALOG_REPO}
-    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
     path: git
   - type: git
     service: ${TEKTON_CATALOG_REPO}
-    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
     path: cloudfoundry
   - type: git
     service: ${TEKTON_CATALOG_REPO}
-    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
     path: toolchain
 triggers:
   - type: git
