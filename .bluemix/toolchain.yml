@@ -157,6 +157,12 @@ services:
           PIPELINE_REPO: pipeline-repo
           COMMONS_HOSTED_REGION: >
             $env.template.info.hosted_region !== "" ? '{{template.info.hosted_region}}':''
+          IBMCLOUD_API: >
+            if ( $env.env_id === 'ibm:ys1:us-south') {
+              "https://test.cloud.ibm.com"
+            } else {
+              "https://cloud.ibm.com"
+            }
         execute: false
   sample-build:
     service_id: pipeline
@@ -217,6 +223,12 @@ services:
             }
           COMMONS_HOSTED_REGION: >
             $env.template.info.hosted_region !== "" ? '{{template.info.hosted_region}}':''
+          IBMCLOUD_API: >
+            if ( $env.env_id === 'ibm:ys1:us-south') {
+              "https://test.cloud.ibm.com"
+            } else {
+              "https://cloud.ibm.com"
+            }
         execute: >
           $env.pipeline_type === 'tekton' ? 'manual-run' : true
   webide:
