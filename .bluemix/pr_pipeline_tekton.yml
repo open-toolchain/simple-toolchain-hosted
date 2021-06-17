@@ -5,24 +5,24 @@ inputs:
     service: ${PIPELINE_REPO}
     path: .pr-pipeline
   - type: git
-    branch: master
-    service: ${DEFINITIONS_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
+    service: ${TEKTON_CATALOG_REPO}
     path: git
   - type: git
-    service: ${DEFINITIONS_BRANCH}
-    branch: master
+    service: ${TEKTON_CATALOG_REPO}
+    branch: ${DEFINITIONS_BRANCH}
     path: toolchain
   - type: git
-    branch: master
-    service: ${DEFINITIONS_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
+    service: ${TEKTON_CATALOG_REPO}
     path: linter
   - type: git
-    branch: master
-    service: ${DEFINITIONS_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
+    service: ${TEKTON_CATALOG_REPO}
     path: tester
   - type: git
-    branch: master
-    service: ${DEFINITIONS_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
+    service: ${TEKTON_CATALOG_REPO}
     path: utils
 triggers:
   - type: git
