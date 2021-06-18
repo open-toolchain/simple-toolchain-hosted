@@ -158,6 +158,8 @@ services:
           PIPELINE_REPO: pipeline-repo
           DEFINITIONS_BRANCH: >
             $env.template.info.hosted_region !== "" ? 'main': 'master'
+          APP_REPO_BRANCH: >
+            $env.template.info.hosted_region !== "" ? 'main': 'master'
           IBMCLOUD_API: >
             if ( $env.env_id === 'ibm:ys1:us-south') {
               "https://test.cloud.ibm.com"
@@ -223,6 +225,8 @@ services:
               'grit-or-gitlab-commit';
             }
           DEFINITIONS_BRANCH: >
+            $env.template.info.hosted_region !== "" ? 'main': 'master'
+          APP_REPO_BRANCH: >
             $env.template.info.hosted_region !== "" ? 'main': 'master'
           IBMCLOUD_API: >
             if ( $env.env_id === 'ibm:ys1:us-south') {
