@@ -7,11 +7,14 @@ properties:
 - name: APP_NAME
   value: ${CF_APP_NAME}
   type: text
+- name: APP_REPO_BRANCH
+  value: ${APP_REPO_BRANCH}
+  type: text
 stages:
 - name: BUILD
   inputs:
   - type: git
-    branch: master
+    branch: ${APP_REPO_BRANCH}
     service: ${SAMPLE_REPO}
   triggers:
   - type: commit
