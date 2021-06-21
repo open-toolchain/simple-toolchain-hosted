@@ -6,27 +6,30 @@ inputs:
     path: .pipeline
   - type: git
     service: ${TEKTON_CATALOG_REPO}
-    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
     path: git
   - type: git
     service: ${TEKTON_CATALOG_REPO}
-    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
     path: cloudfoundry
   - type: git
     service: ${TEKTON_CATALOG_REPO}
-    branch: ${TEKTON_CATALOG_REPO_BRANCH}
+    branch: ${DEFINITIONS_BRANCH}
     path: toolchain
 triggers:
   - type: git
     name: commit-push
     eventListener: ${GIT_COMMIT_EVENT_LISTENER_NAME}
     service: ${SAMPLE_REPO}
-    branch: master
+    branch: ${APP_REPO_BRANCH}
     events: { "push": true }
   - type: manual
     name: manual-run
     eventListener: manual-run
-    properties: []
+    properties:
+      - name: branch
+        type: text
+        value: ${APP_REPO_BRANCH}
 properties:
   - type: text
     name: ibmcloud-api

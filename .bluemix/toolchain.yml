@@ -37,6 +37,7 @@ template:
       $env.branch ?
         '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')' :
         '[master]('+ $env.repository + '/tree/master)'
+    hosted_region: ""
 toolchain:
   name: >
     $env.toolchainName ? '{{toolchainName}}' :
@@ -53,10 +54,13 @@ services:
       repo_url: >
         $env.type === 'link' ? $env.app_repo :
           $env.sourceZipUrl ? '{{sourceZipUrl}}' :
-            'https://github.com/open-toolchain/node-hello-world'
+            $env.template.info.hosted_region !== "" ? 'https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/node-hello-world':
+          'https://github.com/open-toolchain/node-hello-world'
       source_repo_url: >
         $env.type === 'fork' || $env.type === 'clone' ? $env.app_repo :
-          $env.sourceZipUrl ? '{{sourceZipUrl}}' : 'https://github.com/open-toolchain/node-hello-world'
+          $env.sourceZipUrl ? '{{sourceZipUrl}}' : 
+            $env.template.info.hosted_region !== "" ? 'https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/node-hello-world':
+            'https://github.com/open-toolchain/node-hello-world'
       type: $env.type || 'clone'
       has_issues: true
       enable_traceability: true
@@ -67,8 +71,18 @@ services:
     parameters:
       repo_name: >
         $env.toolchainName ? '{{toolchainName}}-pipeline' : "simple-toolchain-hosted-{{timestamp}}"
-      repo_url: "https://github.com/open-toolchain/simple-toolchain-hosted"
-      source_repo_url: "https://github.com/open-toolchain/simple-toolchain-hosted"
+      repo_url: >
+        if ( $env.template.info.hosted_region !== "" ) {
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted"
+        } else {
+          "https://github.com/open-toolchain/simple-toolchain-hosted"
+        }
+      source_repo_url: >
+        if ( $env.template.info.hosted_region !== "" ) {
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted"
+        } else {
+          "https://github.com/open-toolchain/simple-toolchain-hosted"
+        }
       type: 'clone'
       has_issues: false
       enable_traceability: false
@@ -79,8 +93,18 @@ services:
     parameters:
       repo_name: >
         $env.toolchainName ? '{{toolchainName}}-tekton-catalog' : 'tekton-catalog-{{timestamp}}'   
-      repo_url: "https://github.com/open-toolchain/tekton-catalog"
-      source_repo_url: "https://github.com/open-toolchain/tekton-catalog"
+      repo_url: >
+        if ( $env.template.info.hosted_region !== "" ) {
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/tekton-catalog"
+        } else {
+          "https://github.com/open-toolchain/tekton-catalog"
+        }
+      source_repo_url: >
+        if ( $env.template.info.hosted_region !== "" ) {
+          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/tekton-catalog"
+        } else {
+          "https://github.com/open-toolchain/tekton-catalog"
+        }
       type: 'clone'
       has_issues: false
       enable_traceability: false
@@ -115,7 +139,8 @@ services:
           ARTIFACTORY_DOCKER_CONFIG_JSON: '{{form.artifactoryComp.parameters.docker_config_json}}'
           PRIVATE_WORKER: '{{services.privateWorker.parameters.name}}'
           PIPELINE_REPO_BRANCH: >
-            $env.branch ? $env.branch : "master"
+            $env.branch ? $env.branch : 
+            $env.template.info.hosted_region !== "" ? 'main': 'master'
           TEKTON_CATALOG_REPO: tekton-catalog-repo
           REGISTRY_REGION_ID: "{{form.pipeline.parameters.prod-region}}"
           GIT_COMMIT_EVENT_LISTENER_NAME: >
@@ -131,6 +156,10 @@ services:
               'gitlab-pr-listener';
             }
           PIPELINE_REPO: pipeline-repo
+          DEFINITIONS_BRANCH: >
+            $env.template.info.hosted_region !== "" ? 'main': 'master'
+          APP_REPO_BRANCH: >
+            $env.template.info.hosted_region !== "" ? 'main': 'master'
           IBMCLOUD_API: >
             if ( $env.env_id === 'ibm:ys1:us-south') {
               "https://test.cloud.ibm.com"
@@ -180,9 +209,9 @@ services:
             }
           PIPELINE_REPO: pipeline-repo
           PIPELINE_REPO_BRANCH: >
-            $env.branch ? $env.branch : "master"
+            $env.branch ? $env.branch : 
+            $env.template.info.hosted_region !== "" ? 'main': 'master'
           TEKTON_CATALOG_REPO: tekton-catalog-repo
-          TEKTON_CATALOG_REPO_BRANCH: "master"
           GIT_COMMIT_EVENT_LISTENER_NAME: >
             if ( $env.source_provider === 'githubconsolidated' ) {
               'github-commit';
@@ -195,6 +224,10 @@ services:
             } else {
               'grit-or-gitlab-commit';
             }
+          DEFINITIONS_BRANCH: >
+            $env.template.info.hosted_region !== "" ? 'main': 'master'
+          APP_REPO_BRANCH: >
+            $env.template.info.hosted_region !== "" ? 'main': 'master'
           IBMCLOUD_API: >
             if ( $env.env_id === 'ibm:ys1:us-south') {
               "https://test.cloud.ibm.com"
