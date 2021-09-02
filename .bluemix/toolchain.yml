@@ -54,13 +54,13 @@ services:
       repo_url: >
         $env.type === 'link' ? $env.app_repo :
           $env.sourceZipUrl ? '{{sourceZipUrl}}' :
-            $env.template.info.hosted_region !== "" ? 'https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/node-hello-world':
-          'https://github.com/open-toolchain/node-hello-world'
+            $env.template.info.hosted_region !== "" ? 'https://github.ibm.com/Brian-Gleeson/node-hello-world':
+          'https://github.ibm.com/Brian-Gleeson/node-hello-world'
       source_repo_url: >
         $env.type === 'fork' || $env.type === 'clone' ? $env.app_repo :
           $env.sourceZipUrl ? '{{sourceZipUrl}}' : 
-            $env.template.info.hosted_region !== "" ? 'https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/node-hello-world':
-            'https://github.com/open-toolchain/node-hello-world'
+            $env.template.info.hosted_region !== "" ? 'https://github.ibm.com/Brian-Gleeson/node-hello-world':
+            'https://github.ibm.com/Brian-Gleeson/node-hello-world'
       type: $env.type || 'clone'
       has_issues: true
       enable_traceability: true
@@ -71,18 +71,8 @@ services:
     parameters:
       repo_name: >
         $env.toolchainName ? '{{toolchainName}}-pipeline' : "simple-toolchain-hosted-{{timestamp}}"
-      repo_url: >
-        if ( $env.template.info.hosted_region !== "" ) {
-          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted"
-        } else {
-          "https://github.com/open-toolchain/simple-toolchain-hosted"
-        }
-      source_repo_url: >
-        if ( $env.template.info.hosted_region !== "" ) {
-          "https://{{template.info.hosted_region}}.git.cloud.ibm.com/open-toolchain/simple-toolchain-hosted"
-        } else {
-          "https://github.com/open-toolchain/simple-toolchain-hosted"
-        }
+      repo_url: https://github.com/briangleeson/simple-toolchain-hosted
+      source_repo_url: https://github.com/briangleeson/simple-toolchain-hosted
       type: 'clone'
       has_issues: false
       enable_traceability: false
