@@ -13,6 +13,9 @@ spec:
     - name: revision
       description: the git revision/commit for the git repo (default to '' means branch)
       default: ""
+    - name: git-token
+      description: access token for the git repo
+      default: ""
     - name: region
       default: ""
     - name: cf-org
@@ -58,6 +61,8 @@ spec:
             value: $(params.branch)
           - name: revision
             value: $(params.revision)
+          - name: git-token
+            value: $(params.git-token)
           - name: region
             value: $(params.region)
           - name: cf-org

@@ -13,6 +13,8 @@ spec:
       default: "master"
     - name: revision
       description: the git revision/commit for the git repo
+    - name: git-token
+      description: access token for the git repo
     - name: region
       description: Name of the region to deploy the CF app to. Default to the toolchain region
       default: ""
@@ -58,6 +60,8 @@ spec:
           value: "toolchain-apikey"
         - name: ibmcloud-api
           value: $(params.ibmcloud-api)
+        - name: git-access-token
+          value: $(params.git-token)
         - name: repository
           value: $(tasks.extract-repository-url.results.extracted-value)
         - name: branch

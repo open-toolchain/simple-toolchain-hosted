@@ -38,6 +38,8 @@ properties:
   - type: text
     name: ibmcloud-api
     value: ${IBMCLOUD_API}
+  - name: git-token
+    type: secure
   - type: text
     name: cf-app
     value: ${CF_APP_NAME}
