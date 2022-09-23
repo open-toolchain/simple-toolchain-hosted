@@ -1,3 +1,5 @@
+# This template has been deprecated and is no longer supported.
+
 # Develop a Cloud Foundry app
 
 ### Continuously deliver a Cloud Foundry app with IBM hosted repos and issue tracking
